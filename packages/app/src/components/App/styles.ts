@@ -44,6 +44,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   ul {
+    list-style: none;
     padding: 0 0 0 16px;
     margin: 0;
 
@@ -84,14 +85,17 @@ export const GlobalStyles = createGlobalStyle`
 `;
 
 export const PageWrapper = styled.main`
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 2fr;
+  height: 100vh;
+`;
+
+export const SidenavContainer = styled.aside`
   display: flex;
   flex-flow: row nowrap;
-  margin: 0;
-  padding: 0;
-
-  @media (max-width: 600px) {
-    flex-flow: column nowrap;
-  }
+  justify-content: center;
+  background-color: ${getColorAlias('backgroundDefault')};
 `;
 
 export const AppContainer = styled.section`
@@ -101,8 +105,5 @@ export const AppContainer = styled.section`
   padding: 16px 48px 16px 16px;
   position: relative;
   width: 100%;
-
-  @media (max-width: 600px) {
-    padding: 0;
-  }
+  background-color: ${getColorAlias('interactiveLight')};
 `;

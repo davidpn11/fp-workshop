@@ -4,8 +4,5 @@
   "main": "index.js",
   "license": "MIT",
   "private": true,
-  "dependencies": {
-    "@jet-pie/react": "3.4.0-alpha.2",
-    "@jet-pie/theme": "3.0.0"
-  }
+  "dependencies": {}
 }

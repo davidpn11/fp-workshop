@@ -8,6 +8,9 @@ import {
 } from './styles';
 import '@jet-pie/theme/variations/skip/variables.css';
 import {Sidenav} from '../Sidenav';
+import {Routes, Route} from 'react-router';
+import {Home} from '../Home';
+import {Module} from '../Module';
 
 export function App() {
   return (
@@ -17,7 +20,12 @@ export function App() {
         <SidenavContainer>
           <Sidenav />
         </SidenavContainer>
-        <AppContainer>Content here</AppContainer>
+        <AppContainer>
+          <Routes>
+            <Route path={'/'} element={<Home />} />
+            <Route path="/module/:id" element={<Module />} />
+          </Routes>
+        </AppContainer>
       </PageWrapper>
     </PIEThemeProvider>
   );

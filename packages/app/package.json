@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@jet-pie/react": "3.4.0-alpha.2",
+    "@jet-pie/react": "3.4.0-alpha.7",
     "@jet-pie/theme": "3.0.0",
     "@popperjs/core": "2.9.2",
     "fp-ts": "2.11.1",

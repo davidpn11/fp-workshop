@@ -5,9 +5,15 @@ import {taskList, Task} from '../../tasks';
 import * as R from 'fp-ts/lib/Record';
 import * as O from 'fp-ts/lib/Option';
 import {MarkdownPage} from '../MarkdownPage';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  width: 100%;
+`;
+
 export function Module() {
   const {id = ''} = useParams();
-  console.log(location);
+
   const getModule = (): Task | null => {
     return pipe(
       taskList,
@@ -26,10 +32,10 @@ export function Module() {
   }
 
   return (
-    <div>
+    <Wrapper>
       <h1>{currentModule.title}</h1>
       <MarkdownPage content={currentModule.markdown} />
       {currentModule.component}
-    </div>
+    </Wrapper>
   );
 }

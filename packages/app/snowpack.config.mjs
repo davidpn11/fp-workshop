@@ -14,5 +14,6 @@ export default {
     '@snowpack/plugin-typescript',
     '@snowpack/plugin-react-refresh',
     'snowpack-plugin-svgr',
+    'snowpack-plugin-markdown',
   ],
 };

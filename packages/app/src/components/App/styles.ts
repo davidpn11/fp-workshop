@@ -25,24 +25,6 @@ export const GlobalStyles = createGlobalStyle`
      font-weight: ${props => props.theme.font.weightBold};
   }
 
-  h1 {
-    margin: 0 0 16px;
-     font-weight: ${props => props.theme.font.weightExtrabold};
-    ${getFontSize('sizeE')};
-  }
-
-  h2 {
-    margin: 16px 0 8px;
-      font-weight: ${props => props.theme.font.weightExtrabold};
-    ${getFontSize('sizeD')};
-  }
-
-  h3 {
-    margin: 16px 0 8px;
-    font-weight: ${props => props.theme.font.weightBold};
-    ${getFontSize('sizeD')};
-  }
-
   ul {
     list-style: none;
     padding: 0 0 0 16px;
@@ -57,30 +39,6 @@ export const GlobalStyles = createGlobalStyle`
     color: ${getColorAlias('contentLink')};
     text-decoration: none;
     font-weight: ${props => props.theme.font.weightBold};
-  }
-
-
-  pre {
-    background-color: ${getColorAlias('containerStrong')};
-    padding: ${props => `${props.theme.spacing.S} ${props.theme.spacing.XS}`};
-    border-radius: ${props => props.theme.radius.roundedA};
-  }
-
-  code {
-      font-family: ${props => props.theme.font.familyPrimary};
-      color: ${getColorAlias('interactivePrimary')};
-      background-color: ${getColorAlias('containerStrong')};
-      border-style: none;
-      border-radius: 3px;
-      display: inline;
-      padding: 2px 4px;
-      white-space: pre-wrap;
-      overflow-wrap: break-word;
-
-
-      &.language-tsx, &.language-json{
-        /* padding: 20px 0; */
-      }
   }
 `;
 

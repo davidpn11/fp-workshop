@@ -1,10 +1,12 @@
 import React from 'react';
 import {HomeWrapper} from './styles';
+import {MarkdownPage} from '../../components/MarkdownPage';
+import HomePage from './home.md';
 
 export function Home() {
   return (
     <HomeWrapper>
-      <h1>Welcome to the functional programming workshop!</h1>
+      <MarkdownPage content={HomePage.markdown} />
     </HomeWrapper>
   );
 }

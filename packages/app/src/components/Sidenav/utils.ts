@@ -23,16 +23,12 @@ export const taskListDay1 = [
     title: 'Currying and composition',
   },
   {
-    id: 'task2',
-    title: 'Sum Types',
-  },
-  {
     id: 'task3',
     title: 'Pipe and Flow',
   },
   {
     id: 'task4',
-    title: 'Options and Eithers',
+    title: 'Option and Either',
   },
   {
     id: 'task5',

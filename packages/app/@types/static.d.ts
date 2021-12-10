@@ -56,5 +56,7 @@ declare module '*.png' {
   const ref: string;
   export default ref;
 }
-
-/* CUSTOM: ADD YOUR OWN HERE */
+declare module '*.md' {
+  const content: {markdown: string};
+  export default content;
+}

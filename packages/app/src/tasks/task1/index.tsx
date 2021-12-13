@@ -6,54 +6,51 @@ import {
   ChallengeCompiler,
   Challenge,
 } from '../../components/CompilingSystem';
-
-const add = (x: number) => (y: number) => x + y;
-const mult = (x: number) => (y: number) => x * y;
-
-const add1 = add(1);
-const mult2 = mult(2);
-const multNeg1 = mult(-1);
+import {challenge1a, challenge1b, challenge1c, challenge1d} from './challenge';
+import {TaskPage} from '../style';
 
 export function Task1() {
-  const tas1Pipe: (i: number) => number = flow(
-    add1,
-    add1,
-    add1,
-    mult2,
-    mult2,
-    add1,
-  );
-
-  const tas2Pipe: (i: number) => string = flow(
-    flow(add1, add1, add1, add1),
-    multNeg1,
-    mult2,
-    mult2,
-    add1,
-    add1,
-    add1,
-    String,
-  );
-
-  const challenge: Challenge = {
+  const c1a: Challenge = {
     type: 'numberToNumber',
     title: 'Challenge 1.a',
     challenge: {
       input: 0,
-      expectedOutput: 13,
-      handler: tas1Pipe,
+      expectedOutput: 9,
+      handler: challenge1a,
     },
   };
-
-  const challenge2: Challenge = {
-    type: 'numberToString',
+  const c1b: Challenge = {
+    type: 'numberToNumber',
     title: 'Challenge 1.b',
     challenge: {
       input: 0,
-      expectedOutput: '-13',
-      handler: tas2Pipe,
+      expectedOutput: 16,
+      handler: challenge1b,
+    },
+  };
+  const c1c: Challenge = {
+    type: 'numberToNumber',
+    title: 'Challenge 1.c',
+    challenge: {
+      input: 0,
+      expectedOutput: 13,
+      handler: challenge1c,
     },
   };
 
-  return <CompilingSystem tasks={[challenge, challenge2]} />;
+  const c1d: Challenge = {
+    type: 'numberToString',
+    title: 'Challenge 1.d',
+    challenge: {
+      input: 0,
+      expectedOutput: '-13',
+      handler: challenge1d,
+    },
+  };
+
+  return (
+    <TaskPage>
+      <CompilingSystem tasks={[c1a, c1b, c1c, c1d]} />{' '}
+    </TaskPage>
+  );
 }

@@ -1,4 +1,4 @@
-import {IconButton} from '@jet-pie/react';
+import {IconButton, Button} from '@jet-pie/react';
 import {Play} from '@jet-pie/react/esm/icons';
 
 import React from 'react';
@@ -65,7 +65,6 @@ function Balls(props: BallsProps) {
   const onClick = (i: number) => () => props.onSelect(i);
   const arr = Array.from({length: props.size});
 
-  console.log(props.status);
   return (
     <BallsWrapper>
       {arr.map((_, i) => {
@@ -155,19 +154,39 @@ export function TaskRunnerPrimitive(props: TaskRunnerPrimitive) {
     status: 'neutral',
   });
   const [output, setOutput] = React.useState<string | number | null>(null);
+  const [error, setError] = React.useState('');
 
   const run = () => {
-    const newOutput = props.challenge.handler(props.challenge.input);
-    setOutput(newOutput);
-    setState({
-      answer: newOutput,
-      status:
+    try {
+      const newOutput = props.challenge.handler(props.challenge.input);
+      setOutput(newOutput);
+      setState({
+        answer: newOutput,
+        status:
+          newOutput === props.challenge.expectedOutput
+            ? 'positive'
+            : 'negative',
+      });
+      props.onRun(
         newOutput === props.challenge.expectedOutput ? 'positive' : 'negative',
-    });
-    props.onRun(
-      newOutput === props.challenge.expectedOutput ? 'positive' : 'negative',
-    );
+      );
+      setError('');
+    } catch (err) {
+      //@ts-ignore
+      setError(err.message);
+    }
   };
+
+  if (error !== '') {
+    return (
+      <h1>
+        Ops! something went wrong with your method
+        <Button size="medium" variant="secondary" onClick={() => setError('')}>
+          Retry
+        </Button>
+      </h1>
+    );
+  }
 
   return (
     <Wrapper>

@@ -28,7 +28,7 @@ export function Module() {
   }, [id]);
 
   if (currentModule === null) {
-    return 'No Module';
+    return <>No Module</>;
   }
 
   return (

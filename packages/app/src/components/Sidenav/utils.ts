@@ -20,19 +20,19 @@ export const taskListDay2 = [
 export const taskListDay1 = [
   {
     id: 'task1',
-    title: 'Currying and composition',
-  },
-  {
-    id: 'task2',
     title: 'Pipe and Flow',
   },
   {
-    id: 'task3',
+    id: 'task2',
     title: 'Option and Either',
   },
   {
-    id: 'task4',
+    id: 'task3',
     title: 'Remote Data',
+  },
+  {
+    id: 'task4',
+    title: 'Task and TaskEither',
   },
 ];
 

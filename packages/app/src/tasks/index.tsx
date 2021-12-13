@@ -11,12 +11,12 @@ export type Task = {
 };
 export const taskList: Record<string, Task> = {
   task1: {
-    title: 'Task 1 - Currying and composition',
+    title: 'Task 1 - Pipe and Flow',
     markdown: Task1Markdown.markdown,
     component: <Task1 />,
   },
   task2: {
-    title: 'Task 2 - Pipe and Flow',
+    title: 'Task 2 - Option and Either',
     markdown: Task2Markdown.markdown,
     component: <Task2 />,
   },

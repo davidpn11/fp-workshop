@@ -1,7 +1,7 @@
+import React from 'react';
 import {Card, getColorAlias} from '@jet-pie/react';
 import {AliasKey} from '@jet-pie/theme/variations/skip';
 import styled, {css} from 'styled-components';
-import {Status} from './';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -10,14 +10,14 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const Box = styled(Card)<{status?: Status}>`
+export const Box = styled(Card)<{state?: Status}>`
   ${props => {
-    if (props.status === 'negative') {
+    if (props.state === 'negative') {
       return css`
         border: 3px solid ${props.theme.global.red};
       `;
     }
-    if (props.status === 'positive') {
+    if (props.state === 'positive') {
       return css`
         border: 3px solid ${props.theme.global.green};
       `;

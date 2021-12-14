@@ -33,8 +33,7 @@ export function Module() {
 
   return (
     <Wrapper>
-      <h1>{currentModule.title}</h1>
-      <MarkdownPage content={currentModule.markdown} />
+      {/* <MarkdownPage content={currentModule.markdown} /> */}
       {currentModule.component}
     </Wrapper>
   );

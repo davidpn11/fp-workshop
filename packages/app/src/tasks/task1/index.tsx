@@ -13,6 +13,8 @@ import {TaskSystem} from '../../components/TaskSystem';
 //   students,
 // } from './challenge';
 import {TaskPage} from '../style';
+import Challenge1Markdown from './challenge1.md';
+import Challenge2Markdown from './challenge2.md';
 
 const handler = (a: string) => a;
 
@@ -54,13 +56,13 @@ const challenge2b: Challenge = {
 
 const challengeSet1: ChallengeSet = {
   title: 'Challenge 1',
-  markdown: 'Challenge1',
+  markdown: Challenge1Markdown.markdown,
   challenges: [challenge1a, challenge1b],
 };
 
 const challengeSet2: ChallengeSet = {
   title: 'Challenge 2',
-  markdown: 'Challenge2',
+  markdown: Challenge2Markdown.markdown,
   challenges: [challenge2a, challenge2b],
 };
 

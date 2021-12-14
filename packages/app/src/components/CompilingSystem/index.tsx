@@ -17,7 +17,15 @@ export type ChallengeCompiler<I, O> = {
   handler: (i: I) => O;
 };
 
-type ChallengeTypes =
+export type ChallengeCompilerComplex<I = {}, S = {}, O = string[]> = {
+  input: I;
+  expectedOutput: O;
+  extraInputs: any;
+  handler: (...i: any) => S;
+  inputKey: keyof I;
+};
+
+type ChallengeTypes<T = {}> =
   | {
       type: 'numberToNumber';
       challenge: ChallengeCompiler<number, number>;
@@ -27,13 +35,13 @@ type ChallengeTypes =
       challenge: ChallengeCompiler<number, string>;
     }
   | {
-      type: 'jsonObject';
-      challenge: ChallengeCompiler<number, number>;
+      type: 'jsonToString';
+      challenge: ChallengeCompilerComplex<T, string[], string[]>;
     };
 
-export type Challenge = {
+export type Challenge<T = {}> = {
   title: string;
-} & ChallengeTypes;
+} & ChallengeTypes<T>;
 
 type Props = {
   tasks: Challenge[];
@@ -68,7 +76,6 @@ function Balls(props: BallsProps) {
   return (
     <BallsWrapper>
       {arr.map((_, i) => {
-        console.log(i, props.status[i]);
         return (
           <Ball
             status={props.status[i]}
@@ -132,6 +139,12 @@ export function CompilingSystem(props: Props) {
           challenge={currentChallenge.challenge}
         />
       )}
+      {currentChallenge.type === 'jsonToString' && (
+        <TaskRunnerComplex
+          onRun={onTaskRun}
+          challenge={currentChallenge.challenge}
+        />
+      )}
       <Balls
         status={completion}
         size={props.tasks.length}
@@ -141,6 +154,95 @@ export function CompilingSystem(props: Props) {
     </SystemWrapper>
   );
 }
+
+type TaskRunnerComplex<T = {}> = {
+  challenge:
+    | ChallengeCompilerComplex<T, T, string[]>
+    | ChallengeCompilerComplex<T, string[], string[]>;
+  onRun: (status: Status) => void;
+};
+
+export function TaskRunnerComplex<T = {}>(props: TaskRunnerComplex<T>) {
+  const [state, setState] = React.useState<State<T | string[]>>({
+    status: 'neutral',
+  });
+  const [output, setOutput] = React.useState<string[] | T | null>(null);
+  const [error, setError] = React.useState('');
+
+  const run = () => {
+    try {
+      const abc = {
+        _: props.challenge.input[props.challenge.inputKey],
+        ...props.challenge.extraInputs,
+      };
+
+      const newOutput = props.challenge.handler(
+        props.challenge.input[props.challenge.inputKey],
+        ...props.challenge.extraInputs,
+      );
+      setOutput(newOutput);
+      setState({
+        answer: newOutput,
+        status:
+          newOutput === props.challenge.expectedOutput
+            ? 'positive'
+            : 'negative',
+      });
+      props.onRun(
+        newOutput === props.challenge.expectedOutput ? 'positive' : 'negative',
+      );
+      setError('');
+    } catch (err) {
+      //@ts-ignore
+      setError(err.message);
+      //@ts-ignore
+      console.error(err.message);
+    }
+  };
+
+  if (error !== '') {
+    return (
+      <h1>
+        Ops! something went wrong with your method
+        <Button size="medium" variant="secondary" onClick={() => setError('')}>
+          Retry
+        </Button>
+      </h1>
+    );
+  }
+
+  const getInput = () => {
+    if (typeof props.challenge.input === 'object') {
+      const values = props.challenge.input[props.challenge.inputKey];
+
+      return JSON.stringify(values);
+    }
+  };
+
+  return (
+    <Wrapper>
+      <InputBox>
+        <h2>Input</h2>
+        {getInput()}
+      </InputBox>
+      <IconButton
+        size="large"
+        variant="secondary"
+        icon={<Play />}
+        onClick={run}
+      />
+      <OutputBox state={state.status}>
+        <h2>Output</h2>
+        {output || '-'}
+      </OutputBox>
+    </Wrapper>
+  );
+}
+
+type Student = {
+  name: string;
+  score: number;
+};
 
 type TaskRunnerPrimitive = {
   challenge:

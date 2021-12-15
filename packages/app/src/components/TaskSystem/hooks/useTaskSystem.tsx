@@ -2,6 +2,7 @@ import React from 'react';
 import * as A from 'fp-ts/lib/Array';
 import * as O from 'fp-ts/lib/Option';
 import {identity, pipe} from 'fp-ts/lib/function';
+import isEqual from 'react-fast-compare';
 
 export function useTaskSystem(runningTask: TaskType) {
   const [task, setTask] = React.useState(runningTask);
@@ -17,6 +18,23 @@ export function useTaskSystem(runningTask: TaskType) {
     });
   };
 
+  const compareOutputs = (type: IOType, output1: any, output2: any) => {
+    switch (type) {
+      case 'primitive':
+        return output1 === output2;
+      case 'array':
+        return output1.every((o: string | number, i: string | number) => {
+          console.log({output1, output2});
+          console.log({o, i});
+          return o === output2[i];
+        });
+      case 'json':
+        return isEqual(output1, output2);
+      default:
+        break;
+    }
+  };
+
   const onRun = (id: string) => {
     const challenge = pipe(
       task.currentSet.challenges,
@@ -26,21 +44,27 @@ export function useTaskSystem(runningTask: TaskType) {
       }, identity),
     );
 
-    const output = challenge.handler(challenge.input);
+    console.log('input', challenge.input);
+    const output =
+      challenge.outputType === 'primitive'
+        ? challenge.handler(challenge.input)
+        : challenge.handler(...challenge.input);
     const sets: ChallengeSet[] = pipe(
       task.sets,
       A.map(set => {
         const challenges = pipe(
           set.challenges,
           A.map(c => {
-            if (c.id === id)
+            if (c.id === id) {
+              console.log(c);
               return {
                 ...c,
                 output,
-                status: (output === c.expectedOutput
+                status: (compareOutputs(c.outputType, output, c.expectedOutput)
                   ? 'positive'
                   : 'negative') as Status,
               };
+            }
             return c;
           }),
         );

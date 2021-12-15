@@ -57,6 +57,8 @@ export const SidenavContainer = styled.aside`
 `;
 
 export const AppContainer = styled.section`
+  max-height: 100vh;
+  overflow-y: auto;
   display: flex;
   flex-flow: row nowrap;
   margin: 0;

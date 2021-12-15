@@ -8,6 +8,7 @@ import {
 } from '../styles';
 import {Play} from '@jet-pie/react/esm/icons';
 import {Button, IconButton} from '@jet-pie/react';
+import ReactJson from 'react-json-view';
 
 type Props = {
   challenge: Challenge;
@@ -23,6 +24,8 @@ export function TaskRunner(props: Props) {
       setError(null);
     } catch (error) {
       //@ts-ignore
+      console.log(error.message);
+      //@ts-ignore
       setError(error);
     }
   };
@@ -30,7 +33,13 @@ export function TaskRunner(props: Props) {
   if (error !== null) {
     return (
       <ErrorWrapper>
-        <h2>Ops! something went wrong with your method</h2>
+        <span>
+          <h2>Ops! something went wrong</h2>
+          <p>
+            Error: <i>{error.message}</i>
+          </p>
+        </span>
+
         <Button
           size="medium"
           variant="secondary"
@@ -47,7 +56,20 @@ export function TaskRunner(props: Props) {
       <Wrapper>
         <InputBox>
           <span>Input</span>
-          <b>{props.challenge.input}</b>
+          <b>
+            {props.challenge.inputType === 'primitive' ? (
+              props.challenge.input
+            ) : (
+              <ReactJson
+                theme="monokai"
+                src={props.challenge.input}
+                displayDataTypes={false}
+                displayObjectSize={false}
+                collapsed
+                enableClipboard={false}
+              />
+            )}
+          </b>
         </InputBox>
         <IconButton
           size="large"
@@ -55,9 +77,19 @@ export function TaskRunner(props: Props) {
           icon={<Play />}
           onClick={onClick}
         />
-        <OutputBox>
+        <OutputBox state={props.challenge.status}>
           <span>Output</span>
-          <b>{props.challenge.output || '-'}</b>
+          {props.challenge.outputType === 'primitive' ? (
+            <b>{props.challenge.output || '-'}</b>
+          ) : (
+            <ReactJson
+              theme="monokai"
+              src={props.challenge.output}
+              displayDataTypes={false}
+              displayObjectSize={false}
+              enableClipboard={false}
+            />
+          )}
         </OutputBox>
       </Wrapper>
     </>

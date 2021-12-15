@@ -7,11 +7,26 @@ export const Wrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   margin: 10px 0;
 `;
 
 export const Box = styled(Card)<{state?: Status}>`
+  width: 400px;
+  padding: 10px 12px;
+  border: 3px solid transparent;
+  span {
+    font-weight: ${props => props.theme.font.weightExtrabold};
+    align-self: flex-start;
+  }
+  b {
+    ${getFontSize('sizeD')}
+  }
+
+  .react-json-view {
+    background: transparent !important;
+  }
+
   ${props => {
     if (props.state === 'negative') {
       return css`
@@ -25,15 +40,6 @@ export const Box = styled(Card)<{state?: Status}>`
     }
     return '';
   }}
-  min-width: 250px;
-  padding: 10px 12px;
-  span {
-    font-weight: ${props => props.theme.font.weightExtrabold};
-    align-self: flex-start;
-  }
-  b {
-    ${getFontSize('sizeD')}
-  }
 `;
 
 export const InputBox = styled(Box)`
@@ -102,7 +108,21 @@ export const ErrorWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  h2 {
+  span {
+    width: 100%;
     align-self: flex-start;
+  }
+
+  p {
+    display: flex;
+    width: 100%;
+    font-family: ${props => props.theme.font.familyPrimary};
+    color: ${getColorAlias('contentError')};
+    background-color: ${getColorAlias('containerStrong')};
+    border-style: none;
+    border-radius: ${props => props.theme.radius.roundedA};
+    padding: 6px 12px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
   }
 `;

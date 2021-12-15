@@ -1,6 +1,7 @@
 import React from 'react';
 import * as A from 'fp-ts/lib/Array';
 import * as O from 'fp-ts/lib/Option';
+import * as R from 'fp-ts/lib/Record';
 import {identity, pipe} from 'fp-ts/lib/function';
 import isEqual from 'react-fast-compare';
 
@@ -93,6 +94,15 @@ export function useTaskSystem(runningTask: TaskType) {
       };
     }),
   );
+
+  const completedModule = pipe(
+    challengeStatus,
+    R.every(c => c === 'positive'),
+  );
+
+  if (completedModule) {
+    alert('Congrats, you Finished the module!');
+  }
 
   return {task, changeSet, onRun, challengeStatus};
 }

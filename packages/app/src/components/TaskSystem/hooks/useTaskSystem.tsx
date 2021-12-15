@@ -47,7 +47,6 @@ export function useTaskSystem(runningTask: TaskType) {
         return {...set, challenges};
       }),
     );
-    console.log(sets);
     setTask({
       ...task,
       sets,

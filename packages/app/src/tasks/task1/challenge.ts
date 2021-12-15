@@ -40,8 +40,8 @@ export let challenge2b: (students: Student[], names: string[]) => Student[];
 challenge2a = (students, score) => {
   console.log(students);
   console.log(score);
-  // const newS = students.filter(s => s.score < score);
-  // console.log(newS);
-  // return newS.map(a => a.lastName);
-  return [];
+  const newS = students.filter(s => s.score < score);
+  console.log(newS);
+  return newS.map(a => a.lastName);
+  // return [];
 };

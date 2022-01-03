@@ -2,6 +2,7 @@ export default {
   mount: {
     public: '/',
     src: '/dist',
+    '../remote-data': '/@fpworkshop/remote-data',
   },
   routes: [
     {
@@ -16,4 +17,7 @@ export default {
     'snowpack-plugin-svgr',
     'snowpack-plugin-markdown',
   ],
+  alias: {
+    '../remote-data/': '@fpworkshop/remote-data',
+  },
 };

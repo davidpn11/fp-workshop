@@ -1,0 +1,27 @@
+{
+  "name": "@fpworkshop/remote-data",
+  "version": "1.0.0",
+  "main": "build/index.js",
+  "description": "FP workshop remote data package",
+  "workspaces": [
+    "packages/*"
+  ],
+  "private": true,
+  "prettier": "@fpworkshop/prettier-config",
+  "scripts": {
+    "build": "snowpack build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "fp-ts": "2.11.1"
+  },
+  "devDependencies": {
+    "@fpworkshop/ts-config": "^1.0.1",
+    "@snowpack/plugin-typescript": "1.2.1",
+    "snowpack": "3.7.1",
+    "snowpack-plugin-markdown": "^1.0.0",
+    "snowpack-plugin-svgr": "^0.1.2"
+  }
+}

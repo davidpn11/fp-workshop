@@ -99,6 +99,7 @@ const challenge2a: Challenge = {
   inputType: 'json',
   expectedOutput: ['Einstein', 'Newton'],
   outputType: 'array',
+  paramsType: 'spread',
   status: 'neutral',
   handler: challenge2aHandler,
 };
@@ -108,6 +109,7 @@ const challenge2b: Challenge = {
   input: [students, ['Hawking', 'Einstein']],
   inputType: 'json',
   expectedOutput: students2bOutput,
+  paramsType: 'spread',
   outputType: 'json',
   status: 'neutral',
   handler: challenge2bHandler,

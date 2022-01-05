@@ -3,6 +3,8 @@ type Status = 'neutral' | 'positive' | 'negative';
 type ChallengeStatus = Record<string, Status>;
 
 type IOType = 'primitive' | 'array' | 'json';
+type ParamsType = 'simple' | 'spread';
+
 type Challenge = {
   id: string;
   input: any;
@@ -12,6 +14,7 @@ type Challenge = {
   status: Status;
   outputType: IOType;
   inputType: IOType;
+  paramsType?: ParamsType;
 };
 
 type ChallengeSet = {

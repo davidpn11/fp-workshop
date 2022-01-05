@@ -25,8 +25,6 @@ export function useTaskSystem(runningTask: TaskType) {
         return output1 === output2;
       case 'array':
         return output1.every((o: string | number, i: string | number) => {
-          console.log({output1, output2});
-          console.log({o, i});
           return o === output2[i];
         });
       case 'json':
@@ -45,11 +43,10 @@ export function useTaskSystem(runningTask: TaskType) {
       }, identity),
     );
 
-    console.log('input', challenge.input);
     const output =
-      challenge.outputType === 'primitive'
-        ? challenge.handler(challenge.input)
-        : challenge.handler(...challenge.input);
+      challenge.paramsType === 'spread'
+        ? challenge.handler(...challenge.input)
+        : challenge.handler(challenge.input);
     const sets: ChallengeSet[] = pipe(
       task.sets,
       A.map(set => {
@@ -57,7 +54,6 @@ export function useTaskSystem(runningTask: TaskType) {
           set.challenges,
           A.map(c => {
             if (c.id === id) {
-              console.log(c);
               return {
                 ...c,
                 output,

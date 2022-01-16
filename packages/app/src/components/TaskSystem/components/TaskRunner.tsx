@@ -81,6 +81,8 @@ export function TaskRunner(props: Props) {
           <span>Output</span>
           {props.challenge.outputType === 'primitive' ? (
             <b>{props.challenge.output || '-'}</b>
+          ) : props.challenge.outputType === 'component' ? (
+            <>{props.challenge.output}</>
           ) : (
             <ReactJson
               theme="monokai"

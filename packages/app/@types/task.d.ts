@@ -2,7 +2,7 @@ type Status = 'neutral' | 'positive' | 'negative';
 
 type ChallengeStatus = Record<string, Status>;
 
-type IOType = 'primitive' | 'array' | 'json';
+type IOType = 'primitive' | 'array' | 'json' | 'component';
 type ParamsType = 'simple' | 'spread';
 
 type Challenge = {

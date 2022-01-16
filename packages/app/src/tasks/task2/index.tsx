@@ -3,15 +3,17 @@ import {TaskSystem} from '../../components/TaskSystem';
 import {TaskPage} from '../style';
 import Challenge1Markdown from './challenge1.md';
 import Challenge2Markdown from './challenge2.md';
+import Challenge3Markdown from './challenge3.md';
 import {
   resto1,
   resto2,
   challenge1a as challenge1aHandler,
   challenge1b as challenge1bHandler,
 } from './restaurant';
-import {compareDates} from './dates';
+import {compareDates, renderDateCompare} from './dates';
 import * as O from 'fp-ts/lib/Option';
 import * as E from 'fp-ts/lib/Either';
+import {NotificationBanner} from '@jet-pie/react';
 
 const challenge1a: Challenge = {
   id: 'Challenge 1.a',
@@ -35,6 +37,8 @@ const challenge1b: Challenge = {
 
 const compareUncurry = (date1: Date, date2: Date, date3: Date) =>
   compareDates(date1, date2)(date3);
+
+console.log(compareDates);
 
 const date1 = new Date(2020, 5, 20);
 const date2 = new Date(2020, 5, 23);
@@ -124,11 +128,49 @@ const challengeSet2: ChallengeSet = {
   ],
 };
 
+const challenge3a: Challenge = {
+  id: 'Challenge 3.a',
+  input: [{startDate: date1, endDate: date4}, date2],
+  inputType: 'json',
+  paramsType: 'spread',
+  expectedOutput: (
+    <NotificationBanner variant="positive" title="In Range">
+      06/20/2020
+    </NotificationBanner>
+  ),
+  outputType: 'component',
+  status: 'neutral',
+  handler: renderDateCompare,
+};
+
+const challenge3b: Challenge = {
+  id: 'Challenge 3.b',
+  input: [{startDate: date1, endDate: date4}, date5],
+  inputType: 'json',
+  paramsType: 'spread',
+  expectedOutput: (
+    <NotificationBanner variant="error" title="Error">
+      You got the following error: {'OUT_OF_RANGE_AFTER'}
+    </NotificationBanner>
+  ),
+  outputType: 'component',
+  status: 'neutral',
+  handler: renderDateCompare,
+};
+
+const challengeSet3: ChallengeSet = {
+  title: 'Challenge 3 - Either (final)',
+  markdown: Challenge3Markdown.markdown,
+  challenges: [challenge3a, challenge3b],
+};
+
 const task2: TaskType = {
   title: 'task2',
-  sets: [challengeSet1, challengeSet2],
+  sets: [challengeSet1, challengeSet2, challengeSet3],
+  // sets: [challengeSet3],
   currentSet: challengeSet1,
 };
+
 export function Task2() {
   return (
     <TaskPage>

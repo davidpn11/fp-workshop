@@ -1,11 +1,52 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import * as A from 'fp-ts/lib/Array';
 import * as O from 'fp-ts/lib/Option';
 import * as R from 'fp-ts/lib/Record';
 import {identity, pipe} from 'fp-ts/lib/function';
 import isEqual from 'react-fast-compare';
+import {fromTaskK} from 'fp-ts/lib/FromTask';
+
+//Failed store persistence atempt, as the handler is not being set its
+// crashing when running a task
+const STORAGE_KEY = 'FP_WORKSHOP_TASK';
+
+const getPersistedTask = (fallback: TaskType) => {
+  try {
+    const localStorage = window.localStorage;
+    const persisted = localStorage.getItem(STORAGE_KEY);
+    if (persisted) {
+      const taskType = JSON.parse(persisted) as TaskType;
+      console.log({persisted: taskType, fallback});
+      return {...fallback, currentSet: taskType.currentSet};
+    }
+    return fallback;
+  } catch (error) {
+    console.error(error);
+    return fallback;
+  }
+};
+
+const setPersistedTask = (task: TaskType) => {
+  const localStorage = window.localStorage;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(task));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+function usePersistedTask(runningTask: TaskType) {
+  const [task, setTask] = React.useState(() => getPersistedTask(runningTask));
+
+  useEffect(() => {
+    setPersistedTask(task);
+  }, [task]);
+
+  return {task, setTask};
+}
 
 export function useTaskSystem(runningTask: TaskType) {
+  // const {task, setTask} = usePersistedTask(runningTask);
   const [task, setTask] = React.useState(runningTask);
 
   const changeSet = (id: string) => {
@@ -29,8 +70,11 @@ export function useTaskSystem(runningTask: TaskType) {
         });
       case 'json':
         return isEqual(output1, output2);
+      case 'component':
+        console.log(output1.props, output2.props);
+        return isEqual(output1.props, output2.props);
       default:
-        break;
+        return false;
     }
   };
 

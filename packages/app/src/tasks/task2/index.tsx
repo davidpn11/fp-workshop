@@ -167,7 +167,6 @@ const challengeSet3: ChallengeSet = {
 const task2: TaskType = {
   title: 'task2',
   sets: [challengeSet1, challengeSet2, challengeSet3],
-  // sets: [challengeSet3],
   currentSet: challengeSet1,
 };
 

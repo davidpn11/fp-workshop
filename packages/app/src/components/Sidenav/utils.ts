@@ -28,11 +28,11 @@ export const taskListDay1 = [
   },
   {
     id: 'task3',
-    title: 'Remote Data',
+    title: 'Task and TaskEither',
   },
   {
     id: 'task4',
-    title: 'Task and TaskEither',
+    title: 'Remote Data',
   },
 ];
 

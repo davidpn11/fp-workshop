@@ -1,4 +1,4 @@
-## Task 1 - Option and Either
+## Task 2 - Option and Either
 
 Make all necessary changes on `app/src/tasks/task2/restaurant.ts`.
 Use the App to check your solutions
@@ -11,7 +11,7 @@ We will be working with the `Restaurant` type. This type contains a optional `pr
 
 ### Challenge 1a
 
-Create a helper method that gets a `Restaurant` checks if has a Promotion with a budget, returning that budget as an Option.
+Create a helper method that gets a `Restaurant` checks if has a Promotion with a budget, returning that budget as an **Option**.
 
 ### Challenge 1b
 

@@ -6,11 +6,12 @@ import Challenge2Markdown from './challenge2.md';
 import {
   resto1,
   resto2,
-  resto3,
   challenge1a as challenge1aHandler,
   challenge1b as challenge1bHandler,
 } from './restaurant';
+import {compareDates} from './dates';
 import * as O from 'fp-ts/lib/Option';
+import * as E from 'fp-ts/lib/Either';
 
 const challenge1a: Challenge = {
   id: 'Challenge 1.a',
@@ -32,6 +33,78 @@ const challenge1b: Challenge = {
   handler: challenge1bHandler,
 };
 
+const compareUncurry = (date1: Date, date2: Date, date3: Date) =>
+  compareDates(date1, date2)(date3);
+
+const date1 = new Date(2020, 5, 20);
+const date2 = new Date(2020, 5, 23);
+const date3 = new Date(2020, 6, 3);
+const date4 = new Date(2020, 6, 18);
+const date5 = new Date(2020, 6, 24);
+
+const challenge2a: Challenge = {
+  id: 'Challenge 2.a',
+  input: [date1, '11/11/11', date2],
+  inputType: 'json',
+  paramsType: 'spread',
+  expectedOutput: E.left('UNSUPPORTED_VALUE'),
+  outputType: 'json',
+  status: 'neutral',
+  handler: compareUncurry,
+};
+
+const challenge2b: Challenge = {
+  id: 'Challenge 2.b',
+  input: [date2, date1, date3],
+  inputType: 'json',
+  paramsType: 'spread',
+  expectedOutput: E.left('INVALID_RANGE'),
+  outputType: 'json',
+  status: 'neutral',
+  handler: compareUncurry,
+};
+const challenge2c: Challenge = {
+  id: 'Challenge 2.c',
+  input: [date1, date3, date4],
+  inputType: 'json',
+  paramsType: 'spread',
+  expectedOutput: E.left('OUT_OF_RANGE_AFTER'),
+  outputType: 'json',
+  status: 'neutral',
+  handler: compareUncurry,
+};
+const challenge2d: Challenge = {
+  id: 'Challenge 2.d',
+  input: [date4, date5, date1],
+  inputType: 'json',
+  paramsType: 'spread',
+  expectedOutput: E.left('OUT_OF_RANGE_BEFORE'),
+  outputType: 'json',
+  status: 'neutral',
+  handler: compareUncurry,
+};
+const challenge2e: Challenge = {
+  id: 'Challenge 2.e',
+  input: [date1, date5, date2],
+  inputType: 'json',
+  paramsType: 'spread',
+  expectedOutput: E.right(date1),
+  outputType: 'json',
+  status: 'neutral',
+  handler: compareUncurry,
+};
+
+const challenge2f: Challenge = {
+  id: 'Challenge 2.f',
+  input: [date1, date5, date4],
+  inputType: 'json',
+  paramsType: 'spread',
+  expectedOutput: E.right(date5),
+  outputType: 'json',
+  status: 'neutral',
+  handler: compareUncurry,
+};
+
 const challengeSet1: ChallengeSet = {
   title: 'Challenge 1 - Option',
   markdown: Challenge1Markdown.markdown,
@@ -41,7 +114,14 @@ const challengeSet1: ChallengeSet = {
 const challengeSet2: ChallengeSet = {
   title: 'Challenge 2 - Either',
   markdown: Challenge2Markdown.markdown,
-  challenges: [],
+  challenges: [
+    challenge2a,
+    challenge2b,
+    challenge2c,
+    challenge2d,
+    challenge2e,
+    challenge2f,
+  ],
 };
 
 const task2: TaskType = {

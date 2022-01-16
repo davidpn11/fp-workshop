@@ -43,6 +43,7 @@ export const MarkdownWrapper = styled.div`
   }
 
   ul {
+    list-style: inside;
     padding: 0 0 0 16px;
     margin: 0;
 
@@ -55,6 +56,30 @@ export const MarkdownWrapper = styled.div`
     color: ${getColorAlias('contentLink')};
     text-decoration: none;
     font-weight: ${props => props.theme.font.weightBold};
+  }
+
+  blockquote {
+    background: ${getColorAlias('contentSubdued')};
+    color: ${getColorAlias('contentInteractiveDark')};
+    margin: 0;
+    padding: 12px 0;
+    padding-left: 1.4rem;
+    position: relative;
+    border-radius: 4px;
+    p {
+      margin: 0;
+    }
+  }
+  blockquote::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 5%;
+    width: 4px;
+    height: 90%;
+
+    background: ${getColorAlias('contentBrand')};
+    border-radius: 2px / 4px;
   }
 
   code {

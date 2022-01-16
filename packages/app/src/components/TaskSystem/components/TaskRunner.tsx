@@ -65,8 +65,8 @@ export function TaskRunner(props: Props) {
                 src={props.challenge.input}
                 displayDataTypes={false}
                 displayObjectSize={false}
-                collapsed
                 enableClipboard={false}
+                collapsed={1}
               />
             )}
           </b>
@@ -87,7 +87,6 @@ export function TaskRunner(props: Props) {
               src={props.challenge.output}
               displayDataTypes={false}
               displayObjectSize={false}
-              enableClipboard={false}
             />
           )}
         </OutputBox>

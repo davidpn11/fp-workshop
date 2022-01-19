@@ -4,50 +4,30 @@ import * as O from 'fp-ts/lib/Option';
 import * as R from 'fp-ts/lib/Record';
 import {identity, pipe} from 'fp-ts/lib/function';
 import isEqual from 'react-fast-compare';
-import {fromTaskK} from 'fp-ts/lib/FromTask';
-
-//Failed store persistence atempt, as the handler is not being set its
-// crashing when running a task
-const STORAGE_KEY = 'FP_WORKSHOP_TASK';
-
-const getPersistedTask = (fallback: TaskType) => {
-  try {
-    const localStorage = window.localStorage;
-    const persisted = localStorage.getItem(STORAGE_KEY);
-    if (persisted) {
-      const taskType = JSON.parse(persisted) as TaskType;
-      console.log({persisted: taskType, fallback});
-      return {...fallback, currentSet: taskType.currentSet};
-    }
-    return fallback;
-  } catch (error) {
-    console.error(error);
-    return fallback;
-  }
-};
-
-const setPersistedTask = (task: TaskType) => {
-  const localStorage = window.localStorage;
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(task));
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-function usePersistedTask(runningTask: TaskType) {
-  const [task, setTask] = React.useState(() => getPersistedTask(runningTask));
-
-  useEffect(() => {
-    setPersistedTask(task);
-  }, [task]);
-
-  return {task, setTask};
-}
 
 export function useTaskSystem(runningTask: TaskType) {
-  // const {task, setTask} = usePersistedTask(runningTask);
   const [task, setTask] = React.useState(runningTask);
+
+  useEffect(() => {
+    const newCurrentSet: TaskType['currentSet'] = {
+      ...task.currentSet,
+      challenges: pipe(
+        task.currentSet.challenges,
+        A.map(currC => ({
+          ...currC,
+          handler: pipe(
+            runningTask.currentSet.challenges,
+            A.findFirst(runC => runC.id === currC.id),
+            O.fold(
+              () => currC.handler,
+              runC => runC.handler,
+            ),
+          ),
+        })),
+      ),
+    };
+    setTask({...task, currentSet: newCurrentSet});
+  }, [runningTask.currentSet]);
 
   const changeSet = (id: string) => {
     setTask({
@@ -91,6 +71,7 @@ export function useTaskSystem(runningTask: TaskType) {
       challenge.paramsType === 'spread'
         ? challenge.handler(...challenge.input)
         : challenge.handler(challenge.input);
+
     const sets: ChallengeSet[] = pipe(
       task.sets,
       A.map(set => {

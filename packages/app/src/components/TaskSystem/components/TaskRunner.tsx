@@ -18,7 +18,7 @@ type Props = {
 export function TaskRunner(props: Props) {
   const [error, setError] = React.useState<Error | null>(null);
 
-  const onClick = () => {
+  const runChallenge = () => {
     try {
       props.onRun(props.challenge.id);
       setError(null);
@@ -75,7 +75,7 @@ export function TaskRunner(props: Props) {
           size="large"
           variant="secondary"
           icon={<Play />}
-          onClick={onClick}
+          onClick={runChallenge}
         />
         <OutputBox state={props.challenge.status}>
           <span>Output</span>

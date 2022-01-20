@@ -48,7 +48,7 @@ const date5 = new Date(2020, 6, 24);
 
 const challenge2a: Challenge = {
   id: 'Challenge 2.a',
-  input: [date1, '11/11/11', date2],
+  input: {startDate: date1, endDate: '11/11/11', dateInput: date2},
   inputType: 'json',
   paramsType: 'spread',
   expectedOutput: E.left('UNSUPPORTED_VALUE'),
@@ -59,7 +59,7 @@ const challenge2a: Challenge = {
 
 const challenge2b: Challenge = {
   id: 'Challenge 2.b',
-  input: [date2, date1, date3],
+  input: {startDate: date2, endDate: date1, dateInput: date3},
   inputType: 'json',
   paramsType: 'spread',
   expectedOutput: E.left('INVALID_RANGE'),
@@ -69,7 +69,7 @@ const challenge2b: Challenge = {
 };
 const challenge2c: Challenge = {
   id: 'Challenge 2.c',
-  input: [date1, date3, date4],
+  input: {startDate: date1, endDate: date3, dateInput: date4},
   inputType: 'json',
   paramsType: 'spread',
   expectedOutput: E.left('OUT_OF_RANGE_AFTER'),
@@ -79,7 +79,7 @@ const challenge2c: Challenge = {
 };
 const challenge2d: Challenge = {
   id: 'Challenge 2.d',
-  input: [date4, date5, date1],
+  input: {startDate: date4, endDate: date5, dateInput: date1},
   inputType: 'json',
   paramsType: 'spread',
   expectedOutput: E.left('OUT_OF_RANGE_BEFORE'),
@@ -89,7 +89,7 @@ const challenge2d: Challenge = {
 };
 const challenge2e: Challenge = {
   id: 'Challenge 2.e',
-  input: [date1, date5, date2],
+  input: {startDate: date1, endDate: date5, dateInput: date2},
   inputType: 'json',
   paramsType: 'spread',
   expectedOutput: E.right(date1),
@@ -100,7 +100,7 @@ const challenge2e: Challenge = {
 
 const challenge2f: Challenge = {
   id: 'Challenge 2.f',
-  input: [date1, date5, date4],
+  input: {startDate: date1, endDate: date5, dateInput: date4},
   inputType: 'json',
   paramsType: 'spread',
   expectedOutput: E.right(date5),

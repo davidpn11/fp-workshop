@@ -16,7 +16,7 @@ export const Box = styled(Card)<{state?: Status}>`
   padding: 10px 12px;
   border: 3px solid transparent;
   max-height: 600px;
-  overflow-y; auto;
+  overflow-y: auto;
   span {
     font-weight: ${props => props.theme.font.weightExtrabold};
     align-self: flex-start;

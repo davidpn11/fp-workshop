@@ -69,7 +69,7 @@ export function useTaskSystem(runningTask: TaskType) {
 
     const output =
       challenge.paramsType === 'spread'
-        ? challenge.handler(...challenge.input)
+        ? challenge.handler(...pipe(challenge.input, Object.values))
         : challenge.handler(challenge.input);
 
     const sets: ChallengeSet[] = pipe(

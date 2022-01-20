@@ -95,7 +95,7 @@ const challenge1d: Challenge = {
 
 const challenge2a: Challenge = {
   id: 'Challenge 2.a',
-  input: [students, 73],
+  input: {students, score: 73},
   inputType: 'json',
   expectedOutput: ['Einstein', 'Newton'],
   outputType: 'array',
@@ -106,7 +106,7 @@ const challenge2a: Challenge = {
 
 const challenge2b: Challenge = {
   id: 'Challenge 2.b',
-  input: [students, ['Hawking', 'Einstein']],
+  input: {students, names: ['Hawking', 'Einstein']},
   inputType: 'json',
   expectedOutput: students2bOutput,
   paramsType: 'spread',

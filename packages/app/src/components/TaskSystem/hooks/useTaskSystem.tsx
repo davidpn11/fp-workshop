@@ -26,7 +26,34 @@ export function useTaskSystem(runningTask: TaskType) {
         })),
       ),
     };
-    setTask({...task, currentSet: newCurrentSet});
+
+    const updatedSets = pipe(
+      task.sets,
+      A.map(a => {
+        if (a.title === newCurrentSet.title) {
+          return {
+            ...a,
+            challenges: pipe(
+              task.currentSet.challenges,
+              A.map(currC => ({
+                ...currC,
+                handler: pipe(
+                  runningTask.currentSet.challenges,
+                  A.findFirst(runC => runC.id === currC.id),
+                  O.fold(
+                    () => currC.handler,
+                    runC => runC.handler,
+                  ),
+                ),
+              })),
+            ),
+          };
+        }
+        return a;
+      }),
+    );
+
+    setTask({...task, sets: updatedSets, currentSet: newCurrentSet});
   }, [runningTask.currentSet]);
 
   const changeSet = (id: string) => {
@@ -51,7 +78,6 @@ export function useTaskSystem(runningTask: TaskType) {
       case 'json':
         return isEqual(output1, output2);
       case 'component':
-        console.log(output1.props, output2.props);
         return isEqual(output1.props, output2.props);
       default:
         return false;

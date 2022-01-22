@@ -9,6 +9,7 @@ import {
   resto2,
   challenge1a as challenge1aHandler,
   challenge1b as challenge1bHandler,
+  challenge1c as challenge1cHandler,
 } from './restaurant';
 import {compareDates, renderDateCompare} from './dates';
 import * as O from 'fp-ts/lib/Option';
@@ -29,16 +30,24 @@ const challenge1b: Challenge = {
   id: 'Challenge 1.b',
   input: resto2,
   inputType: 'json',
-  expectedOutput: 'You have a TOP_PLACEMENT with $90 left',
+  expectedOutput: 100,
   outputType: 'primitive',
   status: 'neutral',
   handler: challenge1bHandler,
 };
 
+const challenge1c: Challenge = {
+  id: 'Challenge 1.c',
+  input: resto2,
+  inputType: 'json',
+  expectedOutput: 'You have a TOP_PLACEMENT with $90 left',
+  outputType: 'primitive',
+  status: 'neutral',
+  handler: challenge1cHandler,
+};
+
 const compareUncurry = (date1: Date, date2: Date, date3: Date) =>
   compareDates(date1, date2)(date3);
-
-console.log(compareDates);
 
 const date1 = new Date(2020, 5, 20);
 const date2 = new Date(2020, 5, 23);
@@ -112,7 +121,7 @@ const challenge2f: Challenge = {
 const challengeSet1: ChallengeSet = {
   title: 'Challenge 1 - Option',
   markdown: Challenge1Markdown.markdown,
-  challenges: [challenge1a, challenge1b],
+  challenges: [challenge1a, challenge1b, challenge1c],
 };
 
 const challengeSet2: ChallengeSet = {

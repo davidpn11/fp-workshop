@@ -42,7 +42,8 @@ export const resto3 = {
 } as Restaurant | undefined;
 
 export let challenge1a: (r?: Restaurant) => O.Option<Budget>;
-export let challenge1b: (r?: Restaurant) => string;
+export let challenge1b: (r?: Restaurant) => number;
+export let challenge1c: (r?: Restaurant) => string;
 
 //@ts-ignore
 // challenge1a = (r: Restaurant) => {

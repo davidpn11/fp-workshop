@@ -40,7 +40,7 @@ const challenge1c: Challenge = {
   id: 'Challenge 1.c',
   input: resto2,
   inputType: 'json',
-  expectedOutput: 'You have a TOP_PLACEMENT with $90 left',
+  expectedOutput: 'You have a TOP_PLACEMENT with $90 remaining',
   outputType: 'primitive',
   status: 'neutral',
   handler: challenge1cHandler,

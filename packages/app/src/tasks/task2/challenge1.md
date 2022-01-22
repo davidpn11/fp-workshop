@@ -19,4 +19,4 @@ Create a helper method that gets a `Restaurant` checks if has a Promotion with a
 
 ### Challenge 1c
 
-Create a helper method that gets a `Restaurant` checks if has a Promotion with a budget. If it has display, _"You have an PROMOTION_TYPE with $BUDGET_REMAINING remaining"_. If not, display _“Click here to sign in"_
+Create a helper method that gets a `Restaurant` checks if has a Promotion with a budget. If it has display, _"You have a PROMOTION_TYPE with $BUDGET_REMAINING remaining"_. If not, display _“Click here to sign in"_

@@ -1,7 +1,7 @@
 {
   "name": "@fpworkshop/remote-data",
   "version": "1.0.0",
-  "main": "build/index.js",
+  "main": "index.ts",
   "description": "FP workshop remote data package",
   "workspaces": [
     "packages/*"

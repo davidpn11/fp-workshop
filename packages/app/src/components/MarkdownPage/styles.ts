@@ -18,6 +18,7 @@ export const MarkdownWrapper = styled.div`
     padding: 0;
     margin: 0 0 8px;
     ${getFontSize('sizeC')};
+    line-height: 28px;
   }
 
   b {
@@ -48,7 +49,8 @@ export const MarkdownWrapper = styled.div`
     margin: 0;
 
     li {
-      margin: 4px 0;
+      margin: 8px 0;
+      line-height: 26px;
     }
   }
 
@@ -61,7 +63,7 @@ export const MarkdownWrapper = styled.div`
   blockquote {
     background: ${getColorAlias('contentSubdued')};
     color: ${getColorAlias('contentInteractiveDark')};
-    margin: 0;
+    margin: 12px 0;
     padding: 12px 0;
     padding-left: 1.4rem;
     position: relative;

@@ -5,8 +5,7 @@ Use the App to check your solutions
 
 ## Challenge 3 - Either (final)
 
-Youre are now gonna be introduced to the `Range` type, that will be working with more over the workshop. It contains a `startDate` and an `endDate` property, and we will use it
-to create ranges.
+Youre are now gonna be introduced to the `Range` type, that will be working with more over the workshop. It contains a `startDate` and an `endDate` property, and we will use it to create ranges.
 
 For this task, we will having a method that gets `range` and a `date`, where we need to check if the date fits the range.
 

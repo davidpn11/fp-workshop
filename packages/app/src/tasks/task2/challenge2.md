@@ -5,7 +5,7 @@ Use the App to check your solutions
 
 ## Challenge 2 - Either
 
-For this challenge, you will have to create a date comparisson method. Here its signature
+For this challenge, you will have to create a date comparisson method called `compareDates`. Here its signature
 
 ```typescript
 - (date1: Date, date2: Date) => (date3: Date) => E.Either<Error, Response>
@@ -19,7 +19,7 @@ This method will get two dates to create a **Range**. Then it will return a meth
   - If Date 3 is before **Range**: E.left('OUT_OF_RANGE_BEFORE')
   - If Date 3 is after **Range**: E.left('OUT_OF_RANGE_AFTER')
 - Right case:
-  - If range is valid and date3 fits the **Range**: E.right(date)
+  - If range is valid and date3 fits the **Range**: E.right(date3),
 
 > IMPORTANT NOTE: Always consider that the input data have the followying type `Date | undefined`
 

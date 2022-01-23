@@ -45,6 +45,23 @@ export let challenge1a: (r?: Restaurant) => O.Option<Budget>;
 export let challenge1b: (r?: Restaurant) => number;
 export let challenge1c: (r?: Restaurant) => string;
 
+challenge1a = flow(
+  O.fromNullable,
+  O.chain(r => O.fromNullable(r.promotion)),
+  O.chain(p => O.fromNullable(p.budget)),
+);
+
+challenge1b = flow(challenge1a, O.map(b => b.totalAmount), O.getOrElse(() => 0))
+
+challenge1c = resto => pipe(
+  O.Do,
+  O.bind('resto', () => O.fromNullable(resto)),
+  O.bind('promo', ctx => O.fromNullable(ctx.resto.promotion)),
+  O.bind('budget', ctx => O.fromNullable(ctx.promo.budget)),
+  O.map(ctx => `You have a ${ctx.promo.type} with $${ctx.budget.totalAmount - ctx.budget.consumedAmount} left`),
+  O.getOrElse(() => "Click here to sign in")
+)
+
 //@ts-ignore
 // challenge1a = (r: Restaurant) => {
 //   return pipe(

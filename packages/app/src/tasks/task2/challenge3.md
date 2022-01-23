@@ -16,25 +16,22 @@ Now that you have a working `compareDates` method lets use it to render a compon
 - (range: Range, date: Date) => JSX.Element
 ```
 
-To get there you will also have to extract the dates from an API . (This is for the next task)
+We will be using this method to conditionally render components, in this case we will render `NotificationBanner` components from PIE!
 
-simple case
+For the following challenges, render a different variant of the component based on its Either state:
 
-- get dates
-- compute them using compare date
-- render with Either.fold
+- If `left`, render the `positive` variant with `In Range` as its title, with the date as its content. Here is an example:
 
-mid case:
+```typescript
+<NotificationBanner variant="positive" title="In Range">
+  MM/DD/YYYY
+</NotificationBanner>
+```
 
-- gets data from async action (Task<A>), that is an optional
-- Convert to either,
-- if right, compute with `compareDates`
-- if left, return the E.left(invalid_values)
+- If `right`, render the `error` variant with `Error` as its title, and with the text `You got the following error: {ERROR}` as its content. here is an example:
 
-complex case:
-
-- gets data from async action (TaskEither<A>),
-- if right, gets optional case
-- converts to either
-- if right, compute with `compareDates`
-- if left, return the E.left(invalid_values)
+```typescript
+<NotificationBanner variant="error" title="Error">
+  You got the following error: {'INVALID_VALUES'}
+</NotificationBanner>
+```

@@ -1,4 +1,4 @@
-## Task 2 - Option and Either
+# Task 2 - Option and Either
 
 Make all necessary changes on `app/src/tasks/task2/dates.ts`.
 Use the App to check your solutions

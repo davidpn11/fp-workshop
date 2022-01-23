@@ -35,8 +35,8 @@ export let failureOrElse: <A, E, B>(
  * Solutions
  */
 
-initial = {tag: 'initial'};
-loading = {tag: 'loading'};
+// initial = {tag: 'initial'};
+// loading = {tag: 'loading'};
 success = result => ({tag: 'success', result});
 failure = error => ({tag: 'failure', error});
 

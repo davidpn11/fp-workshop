@@ -3,7 +3,7 @@
 Make all necessary changes on `app/src/tasks/task2/restaurant.ts`.
 Use the App to check your solutions
 
-### Introduction
+### Using `Option`
 We will be working with the `Restaurant` type. This type contains a _optional_ `promotion?` property, that itself also contains an _optional_ `budget?` property. We will avoid using optional chaining (`restaurant?.promotion?.budget`), instead using the functions provided by the `Option` module.
 
 ---

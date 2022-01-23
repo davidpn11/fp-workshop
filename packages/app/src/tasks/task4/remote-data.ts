@@ -4,8 +4,8 @@ export type RemoteData<A, E = Error> =
   | {tag: 'success'; result: A}
   | {tag: 'failure'; error: E};
 
-export let initial: RemoteData<never, never>;
-export let loading: RemoteData<never, never>;
+export let initial: () => RemoteData<never, never>;
+export let loading: () => RemoteData<never, never>;
 export let success: <A, E = Error>(result: A) => RemoteData<A, E>;
 export let failure: <A, E = Error>(error: E) => RemoteData<A, E>;
 
@@ -35,8 +35,8 @@ export let failureOrElse: <A, E, B>(
  * Solutions
  */
 
-initial = {tag: 'initial'};
-loading = {tag: 'loading'};
+initial = () => ({tag: 'initial'});
+loading = () => ({tag: 'loading'});
 success = result => ({tag: 'success', result});
 failure = error => ({tag: 'failure', error});
 

@@ -3,28 +3,20 @@
 Make all necessary changes on `app/src/tasks/task1/challenge.ts`.
 Use the App to check your solutions
 
-## Challenge 2:
+----
 
-Given the following type Student:
 
-Create reusable methods for the following functionalities:
+**Challenge 2.a** - `(students: Student[], score: number) => string[]`
 
-#### _2.a_ From an array of students and a score, returns a list with the last names from all the Students that scored above a given score
+Given `students` and `score`, return an array of `lastName` for all `students` above the given `score`
 
-From an array of students and a score, returns a list with the last names from all the Students that scored above a given score
+----
 
-**Type Signature**
 
-```typescript
-- (s: Student[], n: number) => string[]
-```
 
-#### _2.b_ Given an a List of students and a list of last names. Move all last names students to graduated
+**Challenge 2.b** - `(students: Student[], names: string[]) => string[]`
 
-**Type Signature**
+Given `students` and `names`, return all `students` whos `lastName` is in `names`
 
-```typescript
-- (s: Student[], l: string[]) => Student[]
-```
 
 ---

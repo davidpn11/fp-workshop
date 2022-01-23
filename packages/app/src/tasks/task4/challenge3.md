@@ -11,7 +11,7 @@ generic output as `B`.
 
 For that we will create 3 methods:
 
-- The `fold` method will allow give one call back method for each state, where that callback will return a type `B`.
+- `fold`: This method will allow give one call back method for each state, where that callback will return a type `B`.
   Note that the callbacks should have as parameters the value for each state
-- The `successOrElse` is a simpler `fold` where we only have one callback for the `success` case and one for each other scenario.
-- The `failureOrElse` is similar to `successOrElse`, but we consider the `failure` case instead of `success`
+- `successOrElse`: This is a simpler `fold` where we only have one callback for the `success` case and one for each other scenario.
+- `failureOrElse`: Similar to `successOrElse`, but now we consider the `failure` case instead of `success`

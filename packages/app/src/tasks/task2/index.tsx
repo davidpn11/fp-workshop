@@ -101,18 +101,7 @@ const challenge2e: Challenge = {
   input: {startDate: date1, endDate: date5, dateInput: date2},
   inputType: 'json',
   paramsType: 'spread',
-  expectedOutput: E.right(date1),
-  outputType: 'json',
-  status: 'neutral',
-  handler: compareUncurry,
-};
-
-const challenge2f: Challenge = {
-  id: 'Challenge 2.f',
-  input: {startDate: date1, endDate: date5, dateInput: date4},
-  inputType: 'json',
-  paramsType: 'spread',
-  expectedOutput: E.right(date5),
+  expectedOutput: E.right(date2),
   outputType: 'json',
   status: 'neutral',
   handler: compareUncurry,
@@ -127,14 +116,7 @@ const challengeSet1: ChallengeSet = {
 const challengeSet2: ChallengeSet = {
   title: 'Challenge 2 - Either',
   markdown: Challenge2Markdown.markdown,
-  challenges: [
-    challenge2a,
-    challenge2b,
-    challenge2c,
-    challenge2d,
-    challenge2e,
-    challenge2f,
-  ],
+  challenges: [challenge2a, challenge2b, challenge2c, challenge2d, challenge2e],
 };
 
 const challenge3a: Challenge = {

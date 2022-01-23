@@ -80,7 +80,12 @@ export function TaskRunner(props: Props) {
         <OutputBox state={props.challenge.status}>
           <span>Output</span>
           {props.challenge.outputType === 'primitive' ? (
-            <b>{props.challenge.output || '-'}</b>
+            <b>
+              {props.challenge.output ||
+              typeof props.challenge.output === 'boolean'
+                ? String(props.challenge.output)
+                : '-'}
+            </b>
           ) : props.challenge.outputType === 'component' ? (
             <>{props.challenge.output}</>
           ) : (

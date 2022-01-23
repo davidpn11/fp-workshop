@@ -15,12 +15,12 @@ export function useTaskSystem(runningTask: TaskType) {
         task.currentSet.challenges,
         A.map(currC => ({
           ...currC,
-          handler: pipe(
+          ...pipe(
             runningTask.currentSet.challenges,
             A.findFirst(runC => runC.id === currC.id),
             O.fold(
-              () => currC.handler,
-              runC => runC.handler,
+              () => ({handler: currC.handler, input: currC.input}),
+              runC => ({handler: runC.handler, input: runC.input}),
             ),
           ),
         })),
@@ -37,12 +37,12 @@ export function useTaskSystem(runningTask: TaskType) {
               task.currentSet.challenges,
               A.map(currC => ({
                 ...currC,
-                handler: pipe(
+                ...pipe(
                   runningTask.currentSet.challenges,
                   A.findFirst(runC => runC.id === currC.id),
                   O.fold(
-                    () => currC.handler,
-                    runC => runC.handler,
+                    () => ({handler: currC.handler, input: currC.input}),
+                    runC => ({handler: runC.handler, input: runC.input}),
                   ),
                 ),
               })),

@@ -17,22 +17,22 @@ If `target` is within the range, return it. However there are multiple ways this
 
 ---
 
-**Challenge 2.a**
+**Challenge 2.a** - `isDateWithinRange`
 Add a failure case for `start > end`, returning `E.left('INVALID_RANGE')`
 
 ---
 
-**Challenge 2.b**
+**Challenge 2.b** - `isDateWithinRange`
 Add a failure case for `target < start`, returning `E.left('OUT_OF_RANGE_BEFORE')`
 
 ---
 
-**Challenge 2.c**
+**Challenge 2.c** - `isDateWithinRange`
 Add a failure case for `target > end`, returning `E.left('OUT_OF_RANGE_AFTER')`
 
 ---
 
-**Challenge 2.d**
+**Challenge 2.d** - `isDateWithinRange`
 Finally return `E.right(target)` if it's within the range
 
 ---

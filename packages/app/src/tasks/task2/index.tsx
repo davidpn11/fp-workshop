@@ -159,7 +159,7 @@ const challengeSet3: ChallengeSet = {
 const task2: TaskType = {
   title: 'task2',
   sets: [challengeSet1, challengeSet2, challengeSet3],
-  currentSet: challengeSet2,
+  currentSet: challengeSet1,
 };
 
 export function Task2() {

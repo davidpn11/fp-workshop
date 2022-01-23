@@ -1,19 +1,19 @@
 export const taskListDay2 = [
   {
     id: 'task5',
-    title: 'Type Classes: Eq, Sort, Array, Record',
+    title: 'Type Classes: Record and Array',
   },
   {
     id: 'task6',
-    title: 'Advanced Type Classes: Semigroups',
+    title: 'Type Classes: Eq and Sort',
   },
   {
     id: 'task7',
-    title: 'Advanced Type Classes: Monoids',
+    title: 'RemoteData: The Sequel',
   },
   {
     id: 'task8',
-    title: 'Advanced Type Classes: Monads',
+    title: 'Advanced: IO-TS',
   },
 ];
 

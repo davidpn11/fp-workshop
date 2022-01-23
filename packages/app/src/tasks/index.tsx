@@ -2,6 +2,7 @@ import {Task1} from './task1';
 import {Task2} from './task2';
 import {Task3} from './task3';
 import {Task4} from './task4';
+import {Task5} from './task5';
 import React from 'react';
 
 export type Task = {
@@ -24,5 +25,9 @@ export const taskList: Record<string, Task> = {
   task4: {
     title: 'Task 4 - RemoteData',
     component: <Task4 />,
+  },
+  task5: {
+    title: 'Task 5 - Record and Array',
+    component: <Task5 />,
   },
 };

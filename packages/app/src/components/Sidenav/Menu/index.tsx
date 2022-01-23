@@ -2,6 +2,12 @@ import React from 'react';
 import {useLocation, Link} from 'react-router-dom';
 import {Day, taskListDay1, taskListDay2} from '../utils';
 import {MenuListCard, Item, SourceWrapper} from './styles';
+import {IconButton, Tooltip} from '@jet-pie/react';
+import {
+  ReceiptSmall,
+  HackathonSmall,
+  DineInSmall,
+} from '@jet-pie/react/dist/icons';
 
 export function MenuList({showList}: {showList: Day}) {
   const location = useLocation();
@@ -22,7 +28,39 @@ export function MenuList({showList}: {showList: Day}) {
 export function Sources() {
   return (
     <SourceWrapper outline inverse>
-      Sources
+      <Tooltip content="FP-TS docs">
+        <IconButton
+          size="medium"
+          onClick={() => {
+            window.open('https://gcanti.github.io/fp-ts/modules/');
+          }}
+          variant="inverse"
+          icon={<HackathonSmall />}
+        />
+      </Tooltip>
+      <Tooltip content="Slides">
+        <IconButton
+          size="medium"
+          onClick={() => {
+            window.open('https://slides.com/davidpena-1/fp');
+          }}
+          variant="inverse"
+          icon={<ReceiptSmall />}
+        />
+      </Tooltip>
+
+      <Tooltip content="Max Willmott's FP resources">
+        <IconButton
+          size="medium"
+          onClick={() => {
+            window.open(
+              'https://www.notion.so/Frontend-Functional-Programming-workshop-4feeb03d9bef4d98802f036d4ddc7e28',
+            );
+          }}
+          variant="inverse"
+          icon={<DineInSmall />}
+        />
+      </Tooltip>
     </SourceWrapper>
   );
 }

@@ -28,7 +28,7 @@ export const taskListDay1 = [
   },
   {
     id: 'task3',
-    title: 'Task and TaskEither',
+    title: 'Async Either and TaskEither',
   },
   {
     id: 'task4',

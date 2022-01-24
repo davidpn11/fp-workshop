@@ -31,6 +31,10 @@ export let compareDates: (
 
 export let renderDateCompare: (Range: Range, date: Date) => JSX.Element;
 
+/**
+ * Solutions
+ */
+
 compareDates = (date1, date2) => {
   return date3 => {
     console.log(isDate(date1));

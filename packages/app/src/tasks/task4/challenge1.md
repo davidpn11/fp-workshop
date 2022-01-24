@@ -1,21 +1,45 @@
-## Challenge 4 - RemoteData
+# Task 4 - RemoteData
 
-On this module we will be looking into the `RemoteData` type class.
+Make all necessary changes on `app/src/tasks/task4/remote-data.ts`. Use the App to check your solutions.
+
+---
+
+### Creating our own `RemoteData`
+
+In this module we will be looking into the `RemoteData` datatype.
 
 This is a type used to express different states of an IO operation. It has the following states:
 
 - `initial` represents the initial state, where the operation hasn’t started yet
-- `loading`, represents when the IO operation is in progress
-- `success`, represents that the operation has terminated successfully, and its `data` is available
-- `failure`, represents that the operation has failed to complete, and it contains an `error`
+- `loading` represents when the IO operation is in progress
+- `success` represents that the operation has terminated successfully, and its `data` is available
+- `failure` represents that the operation has failed to complete, and it contains an `error`
 
-For this task, we will be creating this `RemoteData` as a module. make all of your changes at:
-`packages/remote-data/src/index.ts`
+We will be creating `RemoteData` from scratch and in each challenge you will be tasked to build a different part.
 
-For each challenge you will be requested to build a different part of the `RemoteData` type class.
 
-### Challenge 4.1:
+---
 
-Build the constructors methods for each state of RemoteData, that is: `initial`, `loading`, `success`, `failure`.
+**Challenge 1.a** - `initial = <E, A>() => RemoteData<E, A>`
 
-> Check the type signatures at the exercise file
+This constructor should return a `RemoteData` in the `initial` state.
+
+---
+
+**Challenge 1.b** - `loading = <E, A>() => RemoteData<E, A>`
+
+This constructor should return a `RemoteData` in the `loading` state.
+
+---
+
+**Challenge 1.c** - `success = <E, A>(result: A) => RemoteData<E, A>`
+
+This constructor should return a `RemoteData` in the `success` state containing the `result`.
+
+---
+
+**Challenge 1.d** - `failure = <E, A>(err: E) => RemoteData<E, A>`
+
+This constructor should return a `RemoteData` in the `failure` state containing the `err`.
+
+---

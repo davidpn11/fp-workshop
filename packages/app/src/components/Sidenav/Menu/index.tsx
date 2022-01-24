@@ -4,9 +4,9 @@ import {Day, taskListDay1, taskListDay2} from '../utils';
 import {MenuListCard, Item, SourceWrapper} from './styles';
 import {IconButton, Tooltip} from '@jet-pie/react';
 import {
-  ReceiptSmall,
-  HackathonSmall,
+  LightningSmall,
   DineInSmall,
+  PoliciesSmall,
 } from '@jet-pie/react/dist/icons';
 
 export function MenuList({showList}: {showList: Day}) {
@@ -35,7 +35,7 @@ export function Sources() {
             window.open('https://gcanti.github.io/fp-ts/modules/');
           }}
           variant="primary"
-          icon={<HackathonSmall />}
+          icon={<LightningSmall />}
         />
       </Tooltip>
       <Tooltip content="Slides">
@@ -45,7 +45,7 @@ export function Sources() {
             window.open('https://slides.com/davidpena-1/fp');
           }}
           variant="primary"
-          icon={<ReceiptSmall />}
+          icon={<PoliciesSmall />}
         />
       </Tooltip>
 

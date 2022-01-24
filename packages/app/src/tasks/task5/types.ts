@@ -58,7 +58,7 @@ type Restaurant = {
   address: string;
   promotions: Promotion[];
   orderHistory: Order[];
-  earnings: Record<string, Earnings>;
+  earnings: Record<number, Earnings>;
   eligibility?: Eligibility;
 };
 
@@ -73,6 +73,23 @@ const restaurant: Restaurant = {
     },
   ],
   orderHistory: [],
-  earnings: {},
+  earnings: {
+    1: {
+      orderNumber: 2,
+      totalEarnings: 30,
+    },
+    2: {
+      orderNumber: 2,
+      totalEarnings: 30,
+    },
+    3: {
+      orderNumber: 2,
+      totalEarnings: 30,
+    },
+    6: {
+      orderNumber: 2,
+      totalEarnings: 30,
+    },
+  },
   eligibility: undefined,
 };

@@ -3,6 +3,7 @@ import React from 'react';
 import {TaskSystem} from '../../components/TaskSystem';
 import {TaskPage} from '../style';
 import Challenge1Markdown from './challenge1.md';
+import Challenge2Markdown from './challenge2.md';
 
 const challenge1a: Challenge = {
   id: 'Challenge 1.a',
@@ -31,10 +32,15 @@ const challengeSet1: ChallengeSet = {
   markdown: Challenge1Markdown.markdown,
   challenges: [challenge1a, challenge1b],
 };
+const challengeSet2: ChallengeSet = {
+  title: 'Challenge 5 - Record and Array',
+  markdown: Challenge2Markdown.markdown,
+  challenges: [challenge1a, challenge1b],
+};
 
 const task4: TaskType = {
   title: 'task3',
-  sets: [challengeSet1],
+  sets: [challengeSet1, challengeSet2],
   currentSet: challengeSet1,
 };
 

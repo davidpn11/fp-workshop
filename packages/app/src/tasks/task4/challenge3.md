@@ -1,19 +1,37 @@
-## Challenge 4 - RemoteData
+# Task 4 - RemoteData
 
-For this task, we will be creating this `RemoteData` as a module. make all of your changes at:
+Make all necessary changes on `app/src/tasks/task4/remote-data.ts`. Use the App to check your solutions.
 
-`packages/remote-data/src/index.ts`
+---
 
-### Challenge 4.3:
+### Creating destructors
 
-We will now build some helpers to map over the `RemoteData` structures
-For that we will create 3 methods:
+We created functions which helped us construct `RemoteData`s, now it's time to create functions which help is get stuff out of `RemoteData`.
 
-`fold`: This method will allow give one callback method for each state, where that callback will return a type `B`.
+---
 
-> Note that the callbacks should have as parameters the value for each state. Check the type
+**Challenge 3.a**
 
-`successOrElse`: This is a simpler `fold` where we only have one callback for the `success` case and one for each other scenario.
-`failureOrElse`: Similar to `successOrElse`, but now we consider the `failure` case instead of `success`
+The `fold` function takes 4 callbacks (one for each possible state) and runs the appropriate one. For states which contain data the callback accepts this data as an argument, for example `onSuccess(value: A) => B` & `onFailure(err: E) => B`.
 
-> Check the type signatures at the exercise file
+> All callbacks must have the same return type, `B`.
+
+Implement the `fold` function. The type signature can be found in the `task4/remote-data.ts` file.
+
+---
+
+**Challenge 3.b**
+
+`successOrElse` is a simpler `fold` where we only require 2 callbacks; for for the `success` state and another for the remaining states. 
+
+Implement a `successOrElse` function. The type signature can be found in the `task4/remote-data.ts` file.
+
+---
+
+**Challenge 3.c**
+
+This function is same concept as `successOrElse` but it targets the `failure` state instead.
+
+Implement a `failureOrElse` function. The type signature can be found in the `task4/remote-data.ts` file.
+
+---

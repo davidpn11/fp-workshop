@@ -54,22 +54,22 @@ export const resto1: Restaurant = {
 
 const challenge1a: Challenge = {
   id: 'Challenge 1.a',
-  input: RD.initial,
+  input: {},
   inputType: 'json',
   expectedOutput: {tag: 'initial'},
   outputType: 'json',
   status: 'neutral',
-  handler: identity,
+  handler: RD.initial,
 };
 
 const challenge1b: Challenge = {
   id: 'Challenge 1.b',
-  input: RD.loading,
+  input: {},
   inputType: 'json',
   expectedOutput: {tag: 'loading'},
   outputType: 'json',
   status: 'neutral',
-  handler: identity,
+  handler: RD.loading,
 };
 
 const challenge1c: Challenge = {

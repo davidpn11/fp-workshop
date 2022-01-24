@@ -1,18 +1,23 @@
+type RemoteDataInitial = {tag: 'initial'};
+type RemoteDataLoading = {tag: 'loading'};
+type RemoteDataSuccess<A> = {tag: 'success'; result: A};
+type RemoteDataFailure<E> = {tag: 'failure'; error: E};
+
 export type RemoteData<A, E = Error> =
-  | {tag: 'initial'}
-  | {tag: 'loading'}
-  | {tag: 'success'; result: A}
-  | {tag: 'failure'; error: E};
+  | RemoteDataInitial
+  | RemoteDataLoading
+  | RemoteDataSuccess<A>
+  | RemoteDataFailure<E>;
 
 export let initial: () => RemoteData<never, never>;
 export let loading: () => RemoteData<never, never>;
 export let success: <A, E = Error>(result: A) => RemoteData<A, E>;
 export let failure: <A, E = Error>(error: E) => RemoteData<A, E>;
 
-export let isInitial: <A, E>(rd: RemoteData<A, E>) => boolean;
-export let isLoading: <A, E>(rd: RemoteData<A, E>) => boolean;
-export let isSuccess: <A, E>(rd: RemoteData<A, E>) => boolean;
-export let isFailure: <A, E>(rd: RemoteData<A, E>) => boolean;
+export let isInitial: any;
+export let isLoading: any;
+export let isSuccess: any;
+export let isFailure: any;
 
 export let fold: <A, B, E>(
   whenInitial: () => B,
@@ -40,9 +45,13 @@ loading = () => ({tag: 'loading'});
 success = result => ({tag: 'success', result});
 failure = error => ({tag: 'failure', error});
 
+//@ts-ignore
 isInitial = rd => rd.tag === 'initial';
+//@ts-ignore
 isLoading = rd => rd.tag === 'loading';
+//@ts-ignore
 isSuccess = rd => rd.tag === 'success';
+//@ts-ignore
 isFailure = rd => rd.tag === 'failure';
 
 fold =

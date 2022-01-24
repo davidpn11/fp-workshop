@@ -15,7 +15,7 @@ In this challenge, we will create a method called `validateTotalEarnings`. It wi
 
 **Challenge 1.c** - `(restaurant: Restaurant, range: Range) => Either<number[], number>`
 
-Now, using the `validateTotalEarnings` we will create a new method called `validateTotalEarningsRange`. This method run the `validateTotalEarnings` for each of the days added in the range, and it will return an Either.
+Now, using the `validateTotalEarnings` we will create a new method called `validateTotalEarningsRange`. This method run the `validateTotalEarnings` for each of the days added in the range, and it will return an `Either`.
 
 - If all days are valid, return `right` with the combined `totalEarnings` of all the range
 - If any of days have invalid data, return `right` with a list of the days that have invalid `totalEarnings`

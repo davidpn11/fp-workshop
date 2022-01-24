@@ -42,7 +42,7 @@ export function Sources() {
         <IconButton
           size="medium"
           onClick={() => {
-            window.open('https://slides.com/davidpena-1/fp');
+            window.open('');
           }}
           variant="primary"
           icon={<PoliciesSmall />}

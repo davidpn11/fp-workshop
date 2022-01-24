@@ -30,4 +30,7 @@ export const MenuListCard = styled(SidenavCard)`
 
 export const SourceWrapper = styled(SidenavCard)`
   padding: 14px 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;

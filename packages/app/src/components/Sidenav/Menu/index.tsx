@@ -34,7 +34,7 @@ export function Sources() {
           onClick={() => {
             window.open('https://gcanti.github.io/fp-ts/modules/');
           }}
-          variant="inverse"
+          variant="primary"
           icon={<HackathonSmall />}
         />
       </Tooltip>
@@ -44,7 +44,7 @@ export function Sources() {
           onClick={() => {
             window.open('https://slides.com/davidpena-1/fp');
           }}
-          variant="inverse"
+          variant="primary"
           icon={<ReceiptSmall />}
         />
       </Tooltip>
@@ -57,7 +57,7 @@ export function Sources() {
               'https://www.notion.so/Frontend-Functional-Programming-workshop-4feeb03d9bef4d98802f036d4ddc7e28',
             );
           }}
-          variant="inverse"
+          variant="primary"
           icon={<DineInSmall />}
         />
       </Tooltip>

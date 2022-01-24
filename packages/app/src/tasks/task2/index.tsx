@@ -55,6 +55,7 @@ const date3 = new Date(2020, 6, 3);
 const date4 = new Date(2020, 6, 18);
 const date5 = new Date(2020, 6, 24);
 
+// Todo this has been removed in the docs
 const challenge2a: Challenge = {
   id: 'Challenge 2.a',
   input: {startDate: date1, endDate: '11/11/11', dateInput: date2},

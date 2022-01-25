@@ -23,3 +23,14 @@ export let challenge1d: (n: number) => string;
 
 export let challenge2a: (students: Student[], score: number) => string[];
 export let challenge2b: (students: Student[], names: string[]) => Student[];
+
+challenge1a = flow(add1, add1, mult2);
+
+//@ts-ignore
+challenge2a = (students, score) => {
+  return ['abc', '123', '1ac', '123'];
+};
+
+challenge2b = (students, score) => {
+  return [];
+};

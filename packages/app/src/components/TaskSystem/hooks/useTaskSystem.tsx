@@ -121,7 +121,6 @@ export function useTaskSystem(runningTask: TaskType) {
         throw new Error();
       }, identity),
     );
-    console.log(task, runningTask);
 
     const output =
       challenge.paramsType === 'spread'

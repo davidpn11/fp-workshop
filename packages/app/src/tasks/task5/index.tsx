@@ -15,6 +15,7 @@ import {
   challenge2b as challenge2bHandler,
   challenge2c as challenge2cHandler,
   challenge2d as challenge2dHandler,
+  challenge2e as challenge2eHandler,
 } from './challenges';
 import {
   date1,
@@ -225,6 +226,28 @@ const challenge2d3: Challenge = {
   handler: challenge2dHandler,
 };
 
+const challenge2e1: Challenge = {
+  id: 'Challenge 2.e (1) ',
+  input: {restaurant: resto4, orderIds: ['id1', 'id3', 'id20']},
+  paramsType: 'spread',
+  inputType: 'json',
+  expectedOutput: E.left('id20'),
+  outputType: 'json',
+  status: 'neutral',
+  handler: challenge2eHandler,
+};
+
+const challenge2e2: Challenge = {
+  id: 'Challenge 2.e (2) ',
+  input: {restaurant: resto5, orderIds: ['id1', 'id3', 'id5', 'id10']},
+  paramsType: 'spread',
+  inputType: 'json',
+  expectedOutput: E.right(226.2),
+  outputType: 'json',
+  status: 'neutral',
+  handler: challenge2eHandler,
+};
+
 const challengeSet1: ChallengeSet = {
   title: 'Challenge 5 - Record and Array - P.1',
   markdown: Challenge1Markdown.markdown,
@@ -250,6 +273,8 @@ const challengeSet2: ChallengeSet = {
     challenge2d1,
     challenge2d2,
     challenge2d3,
+    challenge2e1,
+    challenge2e2,
   ],
 };
 

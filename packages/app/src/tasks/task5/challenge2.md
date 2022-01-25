@@ -31,3 +31,12 @@ An `order` can have a `promotionId` if it had an active promotion when it was ma
 The properties you see on `earnings` are based on the `orders` made at that time. The `orderNumber` refers to the total number of orders made so far, and the `totalEarnings` should be equal the sum of the `totalPrice` from all the orders made.
 
 For this challenge you create a method to verify if those values are correct.
+
+---
+
+**Challenge 2.e (1 to 2)** - `(restaurant: Restaurant, orderIds: string[]) => Either<string, number>`
+
+This challenge requires you to get all the orders that match the `orderIds`,given as input. The method will return an `Either` type, folowing the current scenarios:
+
+- If all `orders` are found, sum its `totalPrice` and return `E.right(sumTotalPrice)`
+- If any of the `orders` is not found, return `E.left(orderId)`

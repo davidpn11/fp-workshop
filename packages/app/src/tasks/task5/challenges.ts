@@ -1,4 +1,5 @@
 import {isSameDay} from 'date-fns';
+import {string} from 'fp-ts';
 import * as A from 'fp-ts/lib/Array';
 import * as E from 'fp-ts/lib/Either';
 import {pipe} from 'fp-ts/lib/function';
@@ -37,6 +38,11 @@ export let challenge2b: (
 export let challenge2c: (restaurant: Restaurant) => Record<string, Order>;
 
 export let challenge2d: (restaurant: Restaurant) => boolean;
+
+export let challenge2e: (
+  restaurant: Restaurant,
+  orderIds: string[],
+) => E.Either<string, number>;
 
 /**
  * Solutions
@@ -179,5 +185,38 @@ challenge2d = resto => {
   return (
     orderSum.num === resto.earnings.orderNumber &&
     orderSum.total === resto.earnings.totalEarnings
+  );
+};
+
+challenge2e = (resto, orderIds) => {
+  const eitherList = pipe(
+    orderIds.map(id =>
+      pipe(
+        resto.orderHistory,
+        R.lookup(id),
+        O.fold(
+          () => E.left(id),
+          o => E.right(o.totalPrice),
+        ),
+      ),
+    ),
+  );
+
+  return pipe(
+    eitherList,
+    A.findFirst(e => E.isLeft(e)),
+    O.fold(
+      () =>
+        pipe(
+          eitherList,
+          A.reduce(0, (acc, curr) => {
+            if (E.isRight(curr)) return acc + curr.right;
+
+            return acc;
+          }),
+          E.right,
+        ),
+      le => le,
+    ),
   );
 };

@@ -42,7 +42,7 @@ export function Sources() {
         <IconButton
           size="medium"
           onClick={() => {
-            window.open('');
+            window.open('https://slides.com/davidpena-1/fp/fullscreen');
           }}
           variant="primary"
           icon={<PoliciesSmall />}

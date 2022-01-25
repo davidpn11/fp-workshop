@@ -14,13 +14,33 @@ For the next We will process this structure using the `Record` and `Array` modul
 
 ### Promotions Tasks
 
-**Challenge 1.a** - `(restaurant: Restaurant) => Record<PromotionType, number>`
+**Challenge 1.a** - `(menuItems: MenuItem[], minimumPrice: number) => MenuItem[]`
 
-We want to know the remaining budget for each of promotion Type. Return an object that has each `PromotionType` as key and the remaining budget if not. If no budget, return 0.
+This time you will be getting a list of `menuItems` and a `minimumPrice` as parameters. The list is already sorted by price. Remove all items that it's `price` is lower than the minimum price and return the list with the higher prices shown first.
 
 ---
 
-**Challenge 1.b** - `(restaurant: Restaurant) => Either<PromotionType[], string[]>`
+**Challenge 1.b (1 to 2)** - `(menuItems: MenuItem[], itemName: string) => Option<MenuItem>`
+
+From a list of `menuItem`'s and a `itemName`, search for an item that has the same name as the one inputed. This method will return an `Option`. If such `menuItem` is found, return `some` with the item as value, or `none` not.
+
+---
+
+**Challenge 1.c** - `(restaurants: Restaurant[]) => string[]`
+From a list of `restaurants`, return a list of the restaurant names that have `FREE_ITEM` promotions
+
+---
+
+**Challenge 1.d** - `(restaurants: Restaurant[]) => { restoNames: string[]; totalBudget: number; }`
+
+From a list of restaurants, we want to know all of them that have `TOP_PLACEMENT` promotions. Return an object that contains the values:
+
+- `restoNames`, as a list with all the restaurant names that have `TOP_PLACEMENT` promotion
+- `totalBudget`, being the `totalBudget` combined of all those restaurants
+
+---
+
+**Challenge 1.e (1 to 3)** - `(restaurant: Restaurant) => Either<string[], PromotionType[]>`
 
 For a promotion to be eligible it has to have its eligibility flag `isEligible` set as `true` AND also shouldn't have any running promotions of that type.
 

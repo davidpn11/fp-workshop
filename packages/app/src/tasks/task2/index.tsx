@@ -56,19 +56,9 @@ const date4 = new Date(2020, 6, 18);
 const date5 = new Date(2020, 6, 24);
 
 // Todo this has been removed in the docs
+
 const challenge2a: Challenge = {
   id: 'Challenge 2.a',
-  input: {startDate: date1, endDate: '11/11/11', dateInput: date2},
-  inputType: 'json',
-  paramsType: 'spread',
-  expectedOutput: E.left('UNSUPPORTED_VALUE'),
-  outputType: 'json',
-  status: 'neutral',
-  handler: compareUncurry,
-};
-
-const challenge2b: Challenge = {
-  id: 'Challenge 2.b',
   input: {startDate: date2, endDate: date1, dateInput: date3},
   inputType: 'json',
   paramsType: 'spread',
@@ -77,8 +67,8 @@ const challenge2b: Challenge = {
   status: 'neutral',
   handler: compareUncurry,
 };
-const challenge2c: Challenge = {
-  id: 'Challenge 2.c',
+const challenge2b: Challenge = {
+  id: 'Challenge 2.b',
   input: {startDate: date1, endDate: date3, dateInput: date4},
   inputType: 'json',
   paramsType: 'spread',
@@ -87,8 +77,8 @@ const challenge2c: Challenge = {
   status: 'neutral',
   handler: compareUncurry,
 };
-const challenge2d: Challenge = {
-  id: 'Challenge 2.d',
+const challenge2c: Challenge = {
+  id: 'Challenge 2.c',
   input: {startDate: date4, endDate: date5, dateInput: date1},
   inputType: 'json',
   paramsType: 'spread',
@@ -97,8 +87,8 @@ const challenge2d: Challenge = {
   status: 'neutral',
   handler: compareUncurry,
 };
-const challenge2e: Challenge = {
-  id: 'Challenge 2.e',
+const challenge2d: Challenge = {
+  id: 'Challenge 2.d',
   input: {startDate: date1, endDate: date5, dateInput: date2},
   inputType: 'json',
   paramsType: 'spread',
@@ -117,7 +107,7 @@ const challengeSet1: ChallengeSet = {
 const challengeSet2: ChallengeSet = {
   title: 'Challenge 2 - Either',
   markdown: Challenge2Markdown.markdown,
-  challenges: [challenge2a, challenge2b, challenge2c, challenge2d, challenge2e],
+  challenges: [challenge2a, challenge2b, challenge2c, challenge2d],
 };
 
 const challenge3a: Challenge = {

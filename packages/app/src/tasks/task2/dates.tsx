@@ -13,11 +13,7 @@ import {
 import * as E from 'fp-ts/lib/Either';
 import {pipe} from 'fp-ts/lib/function';
 
-type DateError =
-  | 'UNSUPPORTED_VALUE'
-  | 'INVALID_RANGE'
-  | 'OUT_OF_RANGE_BEFORE'
-  | 'OUT_OF_RANGE_AFTER';
+type DateError = 'INVALID_RANGE' | 'OUT_OF_RANGE_BEFORE' | 'OUT_OF_RANGE_AFTER';
 
 type Range = {
   startDate: Date;
@@ -37,12 +33,6 @@ export let renderDateCompare: (Range: Range, date: Date) => JSX.Element;
 
 compareDates = (date1, date2) => {
   return date3 => {
-    console.log(isDate(date1));
-    if (!isDate(date1) || !isDate(date2) || !isDate(date3)) {
-      console.log(date3);
-      return E.left('UNSUPPORTED_VALUE');
-    }
-
     if (isBefore(date2, date1)) {
       return E.left('INVALID_RANGE');
     }

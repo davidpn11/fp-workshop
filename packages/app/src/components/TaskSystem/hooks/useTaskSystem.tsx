@@ -9,23 +9,52 @@ export function useTaskSystem(runningTask: TaskType) {
   const [task, setTask] = React.useState(runningTask);
 
   useEffect(() => {
-    const newCurrentSet: TaskType['currentSet'] = {
-      ...task.currentSet,
-      challenges: pipe(
-        task.currentSet.challenges,
-        A.map(currC => ({
-          ...currC,
-          ...pipe(
-            runningTask.currentSet.challenges,
-            A.findFirst(runC => runC.id === currC.id),
-            O.fold(
-              () => ({handler: currC.handler, input: currC.input}),
-              runC => ({handler: runC.handler, input: runC.input}),
+    const getCurrentSet = () => {
+      if (task.currentSet.title !== runningTask.currentSet.title) {
+        return pipe(
+          runningTask.sets,
+          A.findFirst(s => s.title === task.currentSet.title),
+          O.getOrElse(() => runningTask.currentSet),
+          a => ({
+            ...a,
+            challenges: pipe(
+              task.currentSet.challenges,
+              A.map(currC => ({
+                ...currC,
+                ...pipe(
+                  a.challenges,
+                  A.findFirst(runC => runC.id === currC.id),
+                  O.fold(
+                    () => ({handler: currC.handler, input: currC.input}),
+                    runC => ({handler: runC.handler, input: runC.input}),
+                  ),
+                ),
+              })),
             ),
-          ),
-        })),
-      ),
+          }),
+        );
+      }
+
+      return {
+        ...task.currentSet,
+        challenges: pipe(
+          task.currentSet.challenges,
+          A.map(currC => ({
+            ...currC,
+            ...pipe(
+              runningTask.currentSet.challenges,
+              A.findFirst(runC => runC.id === currC.id),
+              O.fold(
+                () => ({handler: currC.handler, input: currC.input}),
+                runC => ({handler: runC.handler, input: runC.input}),
+              ),
+            ),
+          })),
+        ),
+      };
     };
+
+    const newCurrentSet = getCurrentSet();
 
     const updatedSets = pipe(
       task.sets,
@@ -60,9 +89,9 @@ export function useTaskSystem(runningTask: TaskType) {
     setTask({
       ...task,
       currentSet: pipe(
-        task.sets,
+        runningTask.sets,
         A.findFirst(s => s.title === id),
-        O.getOrElse(() => task.currentSet),
+        O.getOrElse(() => runningTask.currentSet),
       ),
     });
   };
@@ -92,6 +121,7 @@ export function useTaskSystem(runningTask: TaskType) {
         throw new Error();
       }, identity),
     );
+    console.log(task, runningTask);
 
     const output =
       challenge.paramsType === 'spread'
@@ -141,6 +171,7 @@ export function useTaskSystem(runningTask: TaskType) {
       };
     }),
   );
+  ``;
 
   const completedModule = pipe(
     challengeStatus,

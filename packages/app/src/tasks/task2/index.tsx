@@ -117,7 +117,7 @@ const challenge3a: Challenge = {
   paramsType: 'spread',
   expectedOutput: (
     <NotificationBanner variant="positive" title="In Range">
-      06/20/2020
+      06/23/2020
     </NotificationBanner>
   ),
   outputType: 'component',

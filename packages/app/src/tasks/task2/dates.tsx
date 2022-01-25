@@ -45,13 +45,7 @@ compareDates = (date1, date2) => {
       return E.left('OUT_OF_RANGE_AFTER');
     }
 
-    const diffDate1 = differenceInDays(date3, date1);
-    const diffDate2 = differenceInDays(date3, date2) * -1;
-
-    console.log({diffDate1, diffDate2});
-    if (diffDate1 < diffDate2) return E.right(date1);
-
-    return E.right(date2);
+    return E.right(date3);
   };
 };
 

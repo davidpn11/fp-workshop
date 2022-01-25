@@ -1,9 +1,10 @@
-import {flow, identity, pipe} from 'fp-ts/lib/function';
-import * as O from 'fp-ts/lib/Option';
-import * as R from 'fp-ts/lib/Record';
+import {isSameDay} from 'date-fns';
 import * as A from 'fp-ts/lib/Array';
 import * as E from 'fp-ts/lib/Either';
-import {MenuItem, PromotionType, Restaurant} from './types';
+import {pipe} from 'fp-ts/lib/function';
+import * as O from 'fp-ts/lib/Option';
+import * as R from 'fp-ts/lib/Record';
+import {MenuItem, Order, PromotionType, Restaurant} from './types';
 
 export let challenge1a: (
   menuItem: MenuItem[],
@@ -25,6 +26,17 @@ export let challenge1d: (restaurants: Restaurant[]) => {
 export let challenge1e: (
   restaurant: Restaurant,
 ) => E.Either<string[], PromotionType[]>;
+
+export let challenge2a: (restaurant: Restaurant, date: Date) => Order[];
+
+export let challenge2b: (
+  restaurant: Restaurant,
+  minimumPrice: number,
+) => string[];
+
+export let challenge2c: (restaurant: Restaurant) => Record<string, Order>;
+
+export let challenge2d: (restaurant: Restaurant) => boolean;
 
 /**
  * Solutions
@@ -123,5 +135,49 @@ challenge1e = resto => {
     R.collect((k, val) => val),
     A.flatten,
     E.left,
+  );
+};
+
+challenge2a = (resto, date) => {
+  return pipe(
+    resto.orderHistory,
+    R.filter(o => isSameDay(o.orderDate, date)),
+    R.collect((k, v) => v),
+  );
+};
+
+challenge2b = (resto, minimumPrice) => {
+  return pipe(
+    resto.orderHistory,
+    R.filterMap(o =>
+      o.totalPrice > minimumPrice ? O.some(o.totalPrice) : O.none,
+    ),
+    R.collect((k, v) => `${k}-${v}`),
+  );
+};
+
+challenge2c = resto => {
+  const promoIds = pipe(resto.promotions.map(p => p.id));
+  console.log({promoIds});
+  return pipe(
+    resto.orderHistory,
+    R.filter(o => promoIds.includes(o.promotionId || '')),
+  );
+};
+
+challenge2d = resto => {
+  const orderSum = pipe(
+    resto.orderHistory,
+    R.reduce({num: 0, total: 0}, (acc, curr) => {
+      return {
+        num: acc.num + 1,
+        total: acc.total + curr.totalPrice,
+      };
+    }),
+  );
+
+  return (
+    orderSum.num === resto.earnings.orderNumber &&
+    orderSum.total === resto.earnings.totalEarnings
   );
 };

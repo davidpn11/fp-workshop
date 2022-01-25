@@ -41,11 +41,9 @@ export type MenuItem = {
 };
 
 export type Order = {
-  id: string;
   customerId: string;
   orderDate: Date;
   promotionId?: string;
-  items: MenuItem[];
   totalPrice: number;
 };
 
@@ -58,8 +56,8 @@ export type Restaurant = {
   name: string;
   address: string;
   promotions: Promotion[];
-  orderHistory: Order[];
-  earnings: Record<number, Earnings>;
+  orderHistory: Record<string, Order>;
+  earnings: Earnings;
   eligibility: Eligibility;
 };
 
@@ -119,6 +117,68 @@ export const menuItems2: MenuItem[] = [
   },
 ];
 
+export const date1 = new Date(2020, 5, 20);
+export const date2 = new Date(2020, 5, 23);
+export const date3 = new Date(2020, 6, 3);
+export const date4 = new Date(2020, 6, 18);
+export const date5 = new Date(2020, 6, 24);
+
+const orders1 = {
+  id1: {
+    customerId: '1',
+    orderDate: date1,
+    promotionId: 'promo1',
+    totalPrice: 20.5,
+  },
+  id2: {
+    customerId: '2',
+    orderDate: date2,
+    promotionId: 'promo2',
+    totalPrice: 50.5,
+  },
+  id3: {
+    customerId: '3',
+    orderDate: date3,
+    totalPrice: 44.7,
+  },
+  id4: {
+    customerId: '4',
+    orderDate: date4,
+    totalPrice: 30.5,
+  },
+  id5: {
+    customerId: '4',
+    orderDate: date5,
+    promotionId: 'promo2',
+    totalPrice: 130.5,
+  },
+};
+
+const orders2 = {
+  id7: {
+    customerId: '10',
+    orderDate: date1,
+    promotionId: 'promo2',
+    totalPrice: 100.5,
+  },
+  id8: {
+    customerId: '13',
+    orderDate: date2,
+    promotionId: 'promo2',
+    totalPrice: 120.5,
+  },
+  id9: {
+    customerId: '8',
+    orderDate: date3,
+    totalPrice: 44.7,
+  },
+  id10: {
+    customerId: '9',
+    orderDate: date4,
+    totalPrice: 30.5,
+  },
+};
+
 export const resto1: Restaurant = {
   name: 'Anghethi',
   address: '222 Stonebridge Dr',
@@ -129,7 +189,7 @@ export const resto1: Restaurant = {
       budget: {totalAmount: 100, consumedAmount: 25},
     },
     {
-      id: 'promo1',
+      id: 'promo2',
       type: 'FREE_ITEM',
       item: {
         name: 'Fries',
@@ -137,24 +197,10 @@ export const resto1: Restaurant = {
       },
     },
   ],
-  orderHistory: [],
+  orderHistory: orders1,
   earnings: {
-    // 1: {
-    //   orderNumber: 2,
-    //   totalEarnings: 30,
-    // },
-    // 2: {
-    //   orderNumber: 2,
-    //   totalEarnings: 30,
-    // },
-    // 3: {
-    //   orderNumber: 2,
-    //   totalEarnings: 30,
-    // },
-    // 6: {
-    //   orderNumber: 2,
-    //   totalEarnings: 30,
-    // },
+    orderNumber: 5,
+    totalEarnings: 276.7,
   },
   eligibility: {
     TOP_PLACEMENT: {
@@ -181,8 +227,11 @@ export const resto2: Restaurant = {
       },
     },
   ],
-  orderHistory: [],
-  earnings: {},
+  orderHistory: orders2,
+  earnings: {
+    orderNumber: 4,
+    totalEarnings: 306.2,
+  },
   eligibility: {
     TOP_PLACEMENT: {
       isEligible: false,
@@ -199,8 +248,11 @@ export const resto3: Restaurant = {
   name: 'Thien Vietnm',
   address: '3rd Av N',
   promotions: [],
-  orderHistory: [],
-  earnings: {},
+  orderHistory: orders2,
+  earnings: {
+    orderNumber: 4,
+    totalEarnings: 306.2,
+  },
   eligibility: {
     TOP_PLACEMENT: {
       isEligible: true,
@@ -217,8 +269,11 @@ export const resto4: Restaurant = {
   name: 'Blufish',
   address: 'Bannatyne Ave ',
   promotions: [],
-  orderHistory: [],
-  earnings: {},
+  orderHistory: orders1,
+  earnings: {
+    orderNumber: 5,
+    totalEarnings: 376.7,
+  },
   eligibility: {
     TOP_PLACEMENT: {
       isEligible: false,
@@ -244,13 +299,16 @@ export const resto5: Restaurant = {
       },
     },
     {
-      id: 'promo1',
+      id: 'promo2',
       type: 'TOP_PLACEMENT',
       budget: {totalAmount: 200, consumedAmount: 0},
     },
   ],
-  orderHistory: [],
-  earnings: {},
+  orderHistory: {...orders1, ...orders2},
+  earnings: {
+    orderNumber: 9,
+    totalEarnings: 682.9,
+  },
   eligibility: {
     TOP_PLACEMENT: {
       isEligible: false,

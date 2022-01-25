@@ -3,6 +3,9 @@ import {Task2} from './task2';
 import {Task3} from './task3';
 import {Task4} from './task4';
 import {Task5} from './task5';
+import {Task6} from './task6';
+import {Task7} from './task7';
+import {Task8} from './task8';
 import React from 'react';
 
 export type Task = {
@@ -29,5 +32,17 @@ export const taskList: Record<string, Task> = {
   task5: {
     title: 'Task 5 - Record and Array',
     component: <Task5 />,
+  },
+  task6: {
+    title: 'Task 6 - Eq and Sort',
+    component: <Task6 />,
+  },
+  task7: {
+    title: 'Task 8 - RemoteData: the Sequel',
+    component: <Task7 />,
+  },
+  task8: {
+    title: 'Task 8 - IO-TS',
+    component: <Task8 />,
   },
 };

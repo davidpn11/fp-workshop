@@ -25,9 +25,9 @@ This time you will be getting a list of `menuItems` and a `minimumPrice` as para
 
 ---
 
-**Challenge 1.b (1 to 2)** - `(menuItems: MenuItem[], itemName: string) => Option<MenuItem>`
+**Challenge 1.b (1 to 2)** - `(menuItems: MenuItem[], itemName: string) => Option<string>`
 
-From a list of `menuItem`'s and a `itemName`, search for an item that has the same name as the one inputed. This method will return an `Option`. If such `menuItem` is found, return `some` with the item as value, or `none` not.
+From a list of `menuItem`'s and a `itemName`, search for an item that has the same name as the one inputed. This method will return an `Option`. If such `menuItem` is found, return `some` with the `id` as value, or `none` not.
 
 ---
 

@@ -15,6 +15,7 @@ type Challenge = {
   outputType: IOType;
   inputType: IOType;
   paramsType?: ParamsType;
+  async?: boolean;
 };
 
 type ChallengeSet = {

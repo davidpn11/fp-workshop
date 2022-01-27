@@ -113,7 +113,7 @@ export function useTaskSystem(runningTask: TaskType) {
     }
   };
 
-  const onRun = (id: string) => {
+  const onRun = async (id: string) => {
     const challenge = pipe(
       task.currentSet.challenges,
       A.findFirst(a => a.id === id),
@@ -122,10 +122,13 @@ export function useTaskSystem(runningTask: TaskType) {
       }, identity),
     );
 
-    const output =
-      challenge.paramsType === 'spread'
-        ? challenge.handler(...pipe(challenge.input, Object.values))
-        : challenge.handler(challenge.input);
+    const output = challenge.async
+      ? challenge.paramsType === 'spread'
+        ? await challenge.handler(...pipe(challenge.input, Object.values))
+        : await challenge.handler(challenge.input)
+      : challenge.paramsType === 'spread'
+      ? challenge.handler(...pipe(challenge.input, Object.values))
+      : challenge.handler(challenge.input);
 
     const sets: ChallengeSet[] = pipe(
       task.sets,

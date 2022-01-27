@@ -18,9 +18,9 @@ type Props = {
 export function TaskRunner(props: Props) {
   const [error, setError] = React.useState<Error | null>(null);
 
-  const runChallenge = () => {
+  const runChallenge = async () => {
     try {
-      props.onRun(props.challenge.id);
+      await props.onRun(props.challenge.id);
       setError(null);
     } catch (error) {
       //@ts-ignore

@@ -11,7 +11,7 @@ import {
   challenge1b as challenge1bHandler,
   challenge1c as challenge1cHandler,
 } from './restaurant';
-import {compareDates, renderDateCompare} from './dates';
+import {isWithinRange, renderIsWithinRange} from './dates';
 import * as O from 'fp-ts/lib/Option';
 import * as E from 'fp-ts/lib/Either';
 import {NotificationBanner} from '@jet-pie/react';
@@ -47,7 +47,7 @@ const challenge1c: Challenge = {
 };
 
 const compareUncurry = (date1: Date, date2: Date, date3: Date) =>
-  compareDates(date1, date2)(date3);
+  isWithinRange(date1, date2)(date3);
 
 const date1 = new Date(2020, 5, 20);
 const date2 = new Date(2020, 5, 23);
@@ -122,7 +122,7 @@ const challenge3a: Challenge = {
   ),
   outputType: 'component',
   status: 'neutral',
-  handler: renderDateCompare,
+  handler: renderIsWithinRange,
 };
 
 const challenge3b: Challenge = {
@@ -137,7 +137,7 @@ const challenge3b: Challenge = {
   ),
   outputType: 'component',
   status: 'neutral',
-  handler: renderDateCompare,
+  handler: renderIsWithinRange,
 };
 
 const challengeSet3: ChallengeSet = {

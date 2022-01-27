@@ -94,7 +94,7 @@ const challenge1d: Challenge = {
 
 const challenge2a: Challenge = {
   id: 'Challenge 2.a',
-  input: RD.initial,
+  input: {tag: 'initial'},
   inputType: 'json',
   expectedOutput: true,
   outputType: 'primitive',

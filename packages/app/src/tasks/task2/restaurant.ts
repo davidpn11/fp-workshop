@@ -1,5 +1,6 @@
 import {flow, pipe} from 'fp-ts/lib/function';
 import * as O from 'fp-ts/lib/Option';
+import {challenge2b} from '../task1/challenge';
 
 type Budget = {
   totalAmount: number;
@@ -41,81 +42,72 @@ export const resto3 = {
   },
 } as Restaurant | undefined;
 
+/**
+ * Create a function that gets a Restaurant checks if has a Promotion with a budget, returning that budget as an Option<Budget>.
+ */
 export let challenge1a: (r?: Restaurant) => O.Option<Budget>;
+
+/**
+ * Create a function that gets a `Restaurant` checks if has a Promotion with a budget. If yes, returns the `totalAmount` value, Else, returns 0.
+ */
 export let challenge1b: (r?: Restaurant) => number;
+
+/** Create a function that gets a Restaurant checks if has a Promotion with a budget. If it has return, "You have a PROMOTION_TYPE with $BUDGET_REMAINING remaining". If not, return “Click here to sign in"
+ */
 export let challenge1c: (r?: Restaurant) => string;
 
 /**
  * Solutions
  */
 
-//@ts-ignore
-// challenge1a = (r: Restaurant) => {
-//   return pipe(
-//     r,
-//     O.fromNullable,
-//     O.map(({promotion}) =>
-//       pipe(
-//         promotion,
-//         O.fromNullable,
-//         O.map(({budget}) => budget),
-//         O.fromNullable,
-//         O.flatten,
-//       ),
-//     ),
-//     O.flatten,
-//   );
-// };
+challenge1a = resto => {
+  return pipe(
+    resto,
+    O.fromNullable,
+    O.map(r =>
+      pipe(
+        r.promotion,
+        O.fromNullable,
+        O.map(p => p.budget as Budget),
+        O.fromNullable,
+        O.flatten,
+      ),
+    ),
+    O.flatten,
+  );
+};
 
-// const cha1a: (p: Promotion | undefined) => O.Option<Budget> = flow(
-//   O.fromNullable,
-//   O.map(({budget}) => budget),
-//   O.chain(a => (a ? O.some(a) : O.none)),
-// );
+challenge1b = resto => {
+  return pipe(
+    resto,
+    challenge1a,
+    O.map(b => b.totalAmount),
+    O.getOrElse(() => 0),
+  );
+};
 
-// const c1b: (p: Partial<{budget:Budget}>) => O.Option<Budget> = flow(
-//   O.fromNullable,
-//   O.map(({budget}) => budget),
-//   O.chain(a => (a ? O.some(a) : O.none)),
-// );
+challenge1c = resto => {
+  const promoO = pipe(
+    resto,
+    O.fromNullable,
+    O.map(({promotion}) => pipe(promotion, O.fromNullable)),
+    O.flatten,
+  );
 
-// const extractPromotion: (r?: Restaurant) => O.Option<Budget> = flow(
-//   O.fromNullable,
-//   O.map(({promotion}) => promotion),
-//   O.chain(cha1a),
-//   // O.getOrElse(() => undefined)
-// );
-
-// challenge1a = a => {
-//   console.log({a});
-//   return extractPromotion(a);
-// };
-
-// const prces = (p: Promotion | undefined) => (budget: O.Option<Budget>) =>
-//   pipe(
-//     budget,
-//     O.fold(
-//       () => 'Nothing',
-//       b =>
-//         `You have a ${p?.type} with $${b.totalAmount - b.consumedAmount} left`,
-//     ),
-//   );
-
-// challenge1b = r => {
-//   return pipe(
-//     r,
-//     O.fromNullable,
-//     O.map(({promotion}) => promotion),
-//     O.chain(a =>
-//       pipe(
-//         a,
-//         O.fromNullable,
-//         O.map(({budget}) => budget),
-//         O.chain(a => (a ? O.some(a) : O.none)),
-//       ),
-//     ),
-//     prces(r?.promotion),
-//   );
-// };
-
-// console.log('c1a', challenge1a(resto1));
+  const promoType = pipe(
+    promoO,
+    O.map(p => p.type),
+    O.getOrElse(() => ''),
+  );
+  return pipe(
+    promoO,
+    O.map(p => p.budget as Budget),
+    O.fold(
+      () => 'Click here to sign in',
+      b =>
+        `You have a ${promoType} with $${
+          b.totalAmount - b.consumedAmount
+        } remaining`,
+    ),
+  );
+};

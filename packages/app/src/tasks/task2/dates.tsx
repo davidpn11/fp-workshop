@@ -20,18 +20,18 @@ type Range = {
   endDate: Date;
 };
 
-export let compareDates: (
+export let isWithinRange: (
   date1: Date,
   date2: Date,
 ) => (date3: Date) => E.Either<DateError, Date>;
 
-export let renderDateCompare: (Range: Range, date: Date) => JSX.Element;
+export let renderIsWithinRange: (Range: Range, date: Date) => JSX.Element;
 
 /**
  * Solutions
  */
 
-compareDates = (date1, date2) => {
+isWithinRange = (date1, date2) => {
   return date3 => {
     if (isBefore(date2, date1)) {
       return E.left('INVALID_RANGE');
@@ -49,8 +49,8 @@ compareDates = (date1, date2) => {
   };
 };
 
-renderDateCompare = (range, date) => {
-  const compDates = compareDates(range.startDate, range.endDate);
+renderIsWithinRange = (range, date) => {
+  const compDates = isWithinRange(range.startDate, range.endDate);
   return pipe(
     date,
     compDates,

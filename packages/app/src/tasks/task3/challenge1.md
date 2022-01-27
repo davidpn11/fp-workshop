@@ -2,7 +2,7 @@
 
 Make all necessary changes on `app/src/tasks/task3/users.ts`.
 
---- ew
+---
 
 ### Introduction
 

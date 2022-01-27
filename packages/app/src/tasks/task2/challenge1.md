@@ -27,6 +27,6 @@ Create a function that gets a `Restaurant` checks if has a Promotion with a budg
 
 Create a function that gets a `Restaurant` checks if has a `Promotion` with a budget. If it has return, `"You have a PROMOTION_TYPE with $BUDGET_REMAINING remaining"`. If not, return `“Click here to sign in"`.
 
-> To calcalate the remaining budget do `(totalAmount - consumedAmount)`
+> To calculate the remaining budget do `(totalAmount - consumedAmount)`
 
 ---

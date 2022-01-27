@@ -11,7 +11,7 @@ Now we will be working with an upgraded `Restaurant` type. This new type has 3 n
 - a `ordersHistory` Record, containing all the `orders` indexed by `orderId`
 - a `earnings` object;
 
-For the next We will process this structure using the `Record` and `Array` modules, achiving the right results for each challenge.
+For the next part, we will process this structure using the `Record` and `Array` modules.
 
 > Use the methods discussed in the slides
 

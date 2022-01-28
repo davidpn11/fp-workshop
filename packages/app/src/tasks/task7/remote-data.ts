@@ -1,4 +1,8 @@
 import * as O from 'fp-ts/lib/Option';
+import * as A from 'fp-ts/lib/Array';
+import * as Eq from 'fp-ts/lib/Eq';
+import * as Ord from 'fp-ts/lib/Ord';
+import {pipe} from 'fp-ts/lib/function';
 
 type RemoteDataInitial = {tag: 'initial'};
 type RemoteDataLoading = {tag: 'loading'};
@@ -38,43 +42,10 @@ export let failureOrElse: <A, E, B>(
   orElse: () => B,
 ) => (rd: RemoteData<A, E>) => B;
 
-export let anyFailures: <E = Error>(p: RemoteData<unknown, E>[]) => O.Option<E>;
+export let anyFailures: <E = Error>(
+  p: RemoteData<unknown, E>[],
+) => O.Option<RemoteData<unknown, E>>;
 
 export let successMap: <A, B>(
   f: (a: A) => B,
 ) => (fa: RemoteData<A, unknown>) => RemoteData<B, unknown>;
-
-/**
- * Solutions
- */
-
-initial = () => ({tag: 'initial'});
-loading = () => ({tag: 'loading'});
-success = result => ({tag: 'success', result});
-failure = error => ({tag: 'failure', error});
-
-//@ts-ignore
-isInitial = rd => rd.tag === 'initial';
-//@ts-ignore
-isLoading = rd => rd.tag === 'loading';
-//@ts-ignore
-isSuccess = rd => rd.tag === 'success';
-//@ts-ignore
-isFailure = rd => rd.tag === 'failure';
-
-fold =
-  <B, A, E>(
-    whenInitial: () => B,
-    whenLoading: () => B,
-    whenSuccess: (result: A) => B,
-    whenFailure: (error: E) => B,
-  ) =>
-  (rd: RemoteData<A, E>): B => {
-    if (rd.tag === 'initial') return whenInitial();
-    if (rd.tag === 'loading') return whenLoading();
-    if (rd.tag === 'success') return whenSuccess(rd.result);
-    return whenFailure(rd.error);
-  };
-
-successOrElse = (onSuccess, onElse) => fold(onElse, onElse, onSuccess, onElse);
-failureOrElse = (onFailure, onElse) => fold(onElse, onElse, onElse, onFailure);

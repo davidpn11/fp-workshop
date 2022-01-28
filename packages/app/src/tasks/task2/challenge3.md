@@ -17,7 +17,7 @@ For a _successful_ result, render a `<NotificationBanner />` with the following 
 
 ```typescript
 <NotificationBanner variant="positive" title="In Range">
-  MM/DD/YYYY
+  MM/dd/yyyy
 </NotificationBanner>
 ```
 

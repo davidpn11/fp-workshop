@@ -52,3 +52,54 @@ export let challenge1b: (
 export let challenge1c: (
   usersIds: string[],
 ) => Promise<E.Either<unknown, readonly string[]>>;
+
+/**
+ * Solutions
+ */
+
+challenge1a = async (id: string): Promise<E.Either<never, User>> => {
+  const result = TE.of(await getUserDetails(id));
+  const ac = await result();
+  return ac;
+};
+
+challenge1b = async (
+  usersIds: string[],
+): Promise<E.Either<unknown, readonly User[]>> => {
+  const listOfPromises = pipe(usersIds, A.map(getUserDetails));
+  const abc = pipe(
+    listOfPromises,
+    A.map(lp =>
+      pipe(
+        TE.tryCatch(
+          () => lp,
+          reason => reason,
+        ),
+      ),
+    ),
+    TE.sequenceArray,
+  );
+
+  return await abc();
+};
+
+challenge1c = async (
+  usersIds: string[],
+): Promise<E.Either<unknown, readonly string[]>> => {
+  const listOfPromises = pipe(usersIds, A.map(getUserDetails));
+  const abc = pipe(
+    listOfPromises,
+    A.map(lp =>
+      pipe(
+        TE.tryCatch(
+          () => lp,
+          reason => reason,
+        ),
+        TE.map(a => a.name),
+      ),
+    ),
+    TE.sequenceArray,
+  );
+
+  return await abc();
+};

@@ -49,3 +49,57 @@ export let anyFailures: <E = Error>(
 export let successMap: <A, B>(
   f: (a: A) => B,
 ) => (fa: RemoteData<A, unknown>) => RemoteData<B, unknown>;
+
+/**
+ * Solutions
+ */
+
+initial = () => ({tag: 'initial'});
+loading = () => ({tag: 'loading'});
+success = result => ({tag: 'success', result});
+failure = error => ({tag: 'failure', error});
+
+//@ts-ignore
+isInitial = rd => rd.tag === 'initial';
+//@ts-ignore
+isLoading = rd => rd.tag === 'loading';
+//@ts-ignore
+isSuccess = rd => rd.tag === 'success';
+//@ts-ignore
+isFailure = rd => rd.tag === 'failure';
+
+fold =
+  <B, A, E>(
+    whenInitial: () => B,
+    whenLoading: () => B,
+    whenSuccess: (result: A) => B,
+    whenFailure: (error: E) => B,
+  ) =>
+  (rd: RemoteData<A, E>): B => {
+    if (rd.tag === 'initial') return whenInitial();
+    if (rd.tag === 'loading') return whenLoading();
+    if (rd.tag === 'success') return whenSuccess(rd.result);
+    return whenFailure(rd.error);
+  };
+
+successOrElse = (onSuccess, onElse) => fold(onElse, onElse, onSuccess, onElse);
+failureOrElse = (onFailure, onElse) => fold(onElse, onElse, onElse, onFailure);
+
+anyFailures = rds => {
+  return pipe(
+    rds,
+    A.findFirst(rd => isFailure(rd)),
+  );
+};
+
+successMap = fn => rd => {
+  return pipe(
+    rd,
+    fold(
+      () => initial(),
+      () => loading(),
+      value => success(fn(value)),
+      e => failure(e),
+    ),
+  );
+};

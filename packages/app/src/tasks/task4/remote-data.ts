@@ -35,3 +35,38 @@ export let failureOrElse: <A, E, B>(
   onFailure: (e: E) => B,
   orElse: () => B,
 ) => (rd: RemoteData<A, E>) => B;
+
+/**
+ * Solutions
+ */
+
+initial = () => ({tag: 'initial'});
+loading = () => ({tag: 'loading'});
+success = result => ({tag: 'success', result});
+failure = error => ({tag: 'failure', error});
+
+//@ts-ignore
+isInitial = rd => rd.tag === 'initial';
+//@ts-ignore
+isLoading = rd => rd.tag === 'loading';
+//@ts-ignore
+isSuccess = rd => rd.tag === 'success';
+//@ts-ignore
+isFailure = rd => rd.tag === 'failure';
+
+fold =
+  <B, A, E>(
+    whenInitial: () => B,
+    whenLoading: () => B,
+    whenSuccess: (result: A) => B,
+    whenFailure: (error: E) => B,
+  ) =>
+  (rd: RemoteData<A, E>): B => {
+    if (rd.tag === 'initial') return whenInitial();
+    if (rd.tag === 'loading') return whenLoading();
+    if (rd.tag === 'success') return whenSuccess(rd.result);
+    return whenFailure(rd.error);
+  };
+
+successOrElse = (onSuccess, onElse) => fold(onElse, onElse, onSuccess, onElse);
+failureOrElse = (onFailure, onElse) => fold(onElse, onElse, onElse, onFailure);

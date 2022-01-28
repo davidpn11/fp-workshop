@@ -37,7 +37,7 @@ const challenge1a1: Challenge = {
   expectedOutput: true,
   outputType: 'primitive',
   status: 'neutral',
-  handler: eqPromotion.equals,
+  handler: eqPromotion && eqPromotion.equals,
 };
 
 const challenge1a2: Challenge = {
@@ -48,7 +48,7 @@ const challenge1a2: Challenge = {
   expectedOutput: false,
   outputType: 'primitive',
   status: 'neutral',
-  handler: eqPromotion.equals,
+  handler: eqPromotion && eqPromotion.equals,
 };
 
 const challenge1a3: Challenge = {
@@ -59,7 +59,7 @@ const challenge1a3: Challenge = {
   expectedOutput: true,
   outputType: 'primitive',
   status: 'neutral',
-  handler: eqPromotion.equals,
+  handler: eqPromotion && eqPromotion.equals,
 };
 
 const challenge1b: Challenge = {
@@ -153,7 +153,7 @@ const challenge2a1: Challenge = {
   expectedOutput: false,
   outputType: 'primitive',
   status: 'neutral',
-  handler: eqOrder.equals,
+  handler: eqOrder && eqOrder.equals,
 };
 
 const challenge2a2: Challenge = {
@@ -164,7 +164,7 @@ const challenge2a2: Challenge = {
   expectedOutput: false,
   outputType: 'primitive',
   status: 'neutral',
-  handler: eqOrder.equals,
+  handler: eqOrder && eqOrder.equals,
 };
 
 const challenge2a3: Challenge = {
@@ -175,7 +175,7 @@ const challenge2a3: Challenge = {
   expectedOutput: true,
   outputType: 'primitive',
   status: 'neutral',
-  handler: eqOrder.equals,
+  handler: eqOrder && eqOrder.equals,
 };
 
 const challenge2b: Challenge = {

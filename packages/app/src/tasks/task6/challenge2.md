@@ -1,5 +1,8 @@
 ## Challenge 6 - Eq and Sort
 
+Keep making all necessary changes on `app/src/tasks/task6/challenge.ts`.
+Use the App to check your solutions
+
 ---
 
 ### Order Eq/Sort

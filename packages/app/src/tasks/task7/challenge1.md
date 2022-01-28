@@ -1,5 +1,8 @@
 ## Challenge 7 - RemoteData: The Sequel
 
+Keep making all necessary changes on `app/src/tasks/task7/remote-data.ts`.
+Use the App to check your solutions
+
 ### Introduction
 
 Wow! Look how far have you come! Great job!
@@ -19,7 +22,7 @@ We will return an `Option` type. Return `some` if found the a `Error`, and `none
 
 ### Challenge 1b (1 to 2) - `successMap`
 
-We require `map` method, to allow us to modify the `result` of a `success` case, without much concern if it's found in another state. Therefore, in case is not a `success`, it should return itself.
+We require a `map` method, to allow us to modify the `result` of a `success` case, without much concern if it's found in another state. Therefore, in case is not a `success`, it should return itself.
 
 ---
 
